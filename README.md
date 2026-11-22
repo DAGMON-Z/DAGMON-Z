@@ -10,7 +10,6 @@
 
 <!-- projects:start -->
 <p align="center">
-<a href="https://github.com/DAGMON-Z/DAGMON-Z.github.io"><img src="assets/proj-DAGMON-Z.github.io.svg" width="49%" alt="DAGMON-Z.github.io"></a>
 <a href="https://github.com/DAGMON-Z/neon-arch"><img src="assets/proj-neon-arch.svg" width="49%" alt="neon-arch"></a>
 <a href="https://github.com/DAGMON-Z/lunarchive"><img src="assets/proj-lunarchive.svg" width="49%" alt="lunarchive"></a>
 </p>
