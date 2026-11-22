@@ -1,16 +1,6 @@
 {
- "generated": 1795369508,
+ "generated": 1795369877,
  "projects": [
-  {
-   "name": "DAGMON-Z.github.io",
-   "desc": "DAGMON OS · an interactive terminal (type help)",
-   "url": "https://github.com/DAGMON-Z/DAGMON-Z.github.io",
-   "homepage": "https://dagmon-z.github.io",
-   "stars": 0,
-   "langs": [
-    "HTML"
-   ]
-  },
   {
    "name": "neon-arch",
    "desc": "Neon Arch: a beginner-friendly Arch Linux + Hyprland setup with a Tokyo Night theme, one-command install, and a competitive programming workflow in Neovim.",
