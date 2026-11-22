@@ -67,28 +67,16 @@ for e in pushes[:8]:
 (CACHE / "commit-msgs.json").write_text(json.dumps(msgs), encoding="utf-8")
 print("fetch done")
 
-# ---- Hack The Box public profile (server-rendered page; no login needed once the profile is public).
-# Fetched at most about once an hour (HTB sits behind Cloudflare rate limits). The parsed result is
-# committed to data/htb-public.json so it survives between runs; on any failure the old file is kept.
-HTB_PROFILE = "https://profile.hackthebox.com/profile/01a0c9bc-3ab8-704c-beee-1661b37d6295"
-if time.gmtime().tm_min < 5 or os.environ.get("FORCE_HTB") or os.environ.get("GITHUB_EVENT_NAME") in ("workflow_dispatch", "push"):
-    try:
-        import re as _re
-        req = urllib.request.Request(HTB_PROFILE, headers={"User-Agent": "Mozilla/5.0 (profile-readme-builder)"})
-        html = urllib.request.urlopen(req, timeout=20).read().decode("utf-8", "replace")
-        raw = json.loads(_re.search(r'id="__NUXT_DATA__"[^>]*>(.*?)</script>', html, _re.S).group(1))
-
-        def val(i):
-            return raw[i] if isinstance(i, int) and 0 <= i < len(raw) else i
-
-        badges = []
-        for x in raw:
-            if isinstance(x, dict) and {"platform", "name", "awarded_at"} <= x.keys():
-                badges.append({k: val(x[k]) for k in ("platform", "name", "description", "awarded_at")})
-        if not badges and "@" not in html:
-            raise RuntimeError("unexpected page")
-        badges.sort(key=lambda b: str(b["awarded_at"]), reverse=True)
-        Path("data/htb-public.json").write_text(json.dumps({"badges": badges, "fetched": int(time.time())}, indent=2), encoding="utf-8")
-        print(f"htb: {len(badges)} badges")
-    except Exception as e:
-        print(f"warn: htb profile: {e}", file=sys.stderr)
+# ---- TryHackMe: the official public badge image (tryhackme.com/p/DAGMON). Its JSON API sits behind a
+# bot checkpoint, but THM publishes this PNG for embedding: rank, level, badges, rooms, streak.
+# Stored in .cache; make_live.py embeds it in the card. On failure the committed copy in assets/ is used.
+try:
+    req = urllib.request.Request("https://tryhackme-badges.s3.amazonaws.com/DAGMON.png",
+                                 headers={"User-Agent": "profile-readme-builder"})
+    png = urllib.request.urlopen(req, timeout=20).read()
+    if not png.startswith(b"\x89PNG"):
+        raise RuntimeError("not a png")
+    (CACHE / "thm-badge.png").write_bytes(png)
+    print(f"thm: badge {len(png)} bytes")
+except Exception as e:
+    print(f"warn: thm badge: {e}", file=sys.stderr)

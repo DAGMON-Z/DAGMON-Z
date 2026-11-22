@@ -43,12 +43,10 @@ cf = {
     "next": {"name": contests[0]["name"], "start": contests[0]["startTimeSeconds"]} if contests else None,
 }
 
-htb_cfg = json.loads(Path("data/htb.json").read_text())
-pub = Path("data/htb-public.json")
-badges = json.loads(pub.read_text())["badges"] if pub.exists() else []
+thm = json.loads(Path("data/thm.json").read_text())
 data = {"generated": int(time.time()), "projects": projects, "cf": cf,
-        "htb": {"user": htb_cfg.get("user"), "path": htb_cfg.get("path"), "privilege": htb_cfg.get("privilege"),
-                "badges": [{"name": b["name"], "desc": b.get("description") or "", "date": str(b.get("awarded_at", ""))[:10]}
-                           for b in badges]}}
+        "thm": {"user": thm.get("user"), "path": thm.get("path"), "privilege": thm.get("privilege"),
+                "url": "https://tryhackme.com/p/" + thm.get("user", "DAGMON"),
+                "badge": "https://raw.githubusercontent.com/DAGMON-Z/DAGMON-Z/main/assets/thm-badge.png"}}
 Path("data/site.json").write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-print("site data:", len(projects), "projects,", len(badges), "badges")
+print("site data:", len(projects), "projects")

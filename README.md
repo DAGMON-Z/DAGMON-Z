@@ -17,7 +17,7 @@
 
 ### 🏁 Competitive programming · 🛡️ Pentesting
 
-<p align="center"><img src="assets/stats.svg" width="100%" alt="Codeforces rating and next contest, and Hack The Box badges as msfconsole loot with a privilege ladder toward CPTS"></p>
+<p align="center"><img src="assets/stats.svg" width="100%" alt="Codeforces rating and next contest, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
 
 ### 📡 Live capture of my activity
 
@@ -47,4 +47,4 @@ Then [open an issue](https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=flag%
 
 </details>
 
-<p align="center"><img src="assets/traceroute.svg" width="100%" alt="traceroute: github, codeforces, hackthebox, you are here"></p>
+<p align="center"><img src="assets/traceroute.svg" width="100%" alt="traceroute: github, codeforces, tryhackme, you are here"></p>

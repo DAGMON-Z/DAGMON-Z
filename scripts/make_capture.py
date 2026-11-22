@@ -1,4 +1,4 @@
-"""Wireshark-style capture of real recent activity (GitHub events + Codeforces submissions + HTB badges).
+"""Wireshark-style capture of real recent activity (GitHub events + Codeforces submissions).
 
 Usage: python3 make_capture.py <cache_dir> <out_dir>
 """
@@ -51,25 +51,15 @@ for s in subs[:10]:
     rows.append((datetime.fromtimestamp(s["creationTimeSeconds"], timezone.utc), ME, "codeforces",
                  "SUBMIT", "#bb9af7", f'{pr.get("contestId", "")}{pr["index"]} · {v}'))
 
-# Hack The Box: badges from the public profile (data/htb-public.json, refreshed hourly).
-_htb = Path("data/htb-public.json")
-for b in (json.loads(_htb.read_text())["badges"] if _htb.exists() else []):
-    try:
-        t = ts(str(b["awarded_at"]))
-    except ValueError:
-        continue
-    what = (b.get("description") or b["name"]).replace(" module completed", " ✓").replace("Awarded when you achieve your ", "").replace("Awarded after ", "")
-    rows.append((t, ME, "hackthebox", "PWN", "#f7768e", f'🏅 {b["name"]} · {what}'[:44]))
-
 # Keep it short (6 packets) but fair: the newest event from each source is always included,
 # then the rest are the newest overall. Shown oldest -> newest, like a real capture.
 rows.sort(key=lambda r: r[0], reverse=True)
 pick = []
-for dest in ("codeforces", "hackthebox"):
+for dest in ("codeforces",):
     r = next((r for r in rows if r[2] == dest), None)
     if r:
         pick.append(r)
-gh = next((r for r in rows if r[2] not in ("codeforces", "hackthebox")), None)
+gh = next((r for r in rows if r[2] != "codeforces"), None)
 if gh:
     pick.append(gh)
 for r in rows:
@@ -94,7 +84,7 @@ for i, (t, s_, d, proto, col, info) in enumerate(rows, 1):
     lines.append(f'{i:<4} {ago(t):<11} {escape(s_[:9]):<9} {escape(d[:14]):<14} '
                  f'<tspan fill="{col}">{proto:<8}</tspan> {escape(info)}')
 lines.append(f'{len(rows) + 1:<4} {"now":<11} you       DAGMON         <tspan fill="#7aa2f7">HTTP    </tspan> GET /profile 200 OK  <tspan fill="#565f89">← that\'s you</tspan>')
-lines += ["", '<tspan fill="#565f89">real GitHub + Codeforces + Hack The Box activity · refreshed automatically</tspan>']
+lines += ["", '<tspan fill="#565f89">real GitHub + Codeforces activity · refreshed automatically</tspan>']
 
 h = 80 + 24 * len(lines)
 body = "".join(f'<text x="24" y="{62 + i * 24}" class="t l" style="animation-delay:{0.3 + i * 0.3:.1f}s">{ln}</text>'
