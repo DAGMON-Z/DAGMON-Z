@@ -1,5 +1,5 @@
 {
- "generated": 1795368363,
+ "generated": 1795369341,
  "projects": [
   {
    "name": "DAGMON-Z.github.io",
@@ -7,7 +7,9 @@
    "url": "https://github.com/DAGMON-Z/DAGMON-Z.github.io",
    "homepage": "https://dagmon-z.github.io",
    "stars": 0,
-   "langs": []
+   "langs": [
+    "HTML"
+   ]
   },
   {
    "name": "neon-arch",
