@@ -1,9 +1,10 @@
-"""One card with everything: full Codeforces panel (top) + full msfconsole HTB session (bottom).
+"""One card with everything: full Codeforces panel (top) + TryHackMe session (bottom).
 
 Usage: python3 make_live.py <cache_dir> <out_dir>
-Reads the Codeforces API cache, data/htb-public.json (badges, refreshed automatically)
-and data/htb.json ("privilege": guest | user | www-data | admin | root).
+Reads the Codeforces API cache, the official TryHackMe badge PNG (refreshed every run)
+and data/thm.json ("privilege": guest | user | www-data | admin | root).
 """
+import base64
 import json
 import sys
 import time
@@ -57,50 +58,47 @@ top = f'''<text x="24" y="36" class="t h">🏁 CODEFORCES · {escape(info["handl
 <polyline class="line" fill="none" stroke="#7aa2f7" stroke-width="2.5" points="{poly}"/>{dots}{labels}
 <text x="{x1}" y="{y0 + 32}" text-anchor="end" class="t" style="font-size:11px;fill:#565f89">rating history</text>'''
 
-# ======================= Hack The Box msfconsole (bottom) =======================
-cfg = json.loads(Path("data/htb.json").read_text())
-pub = Path("data/htb-public.json")
-badges = json.loads(pub.read_text())["badges"] if pub.exists() else []
+# ======================= TryHackMe (bottom) =======================
+cfg = json.loads(Path("data/thm.json").read_text())
+user = cfg.get("user", "DAGMON")
+# Fresh badge from this run if the download worked, otherwise the last good copy in assets/.
+fresh = src / "thm-badge.png"
+if fresh.exists():
+    (out / "thm-badge.png").write_bytes(fresh.read_bytes())
+badge = out / "thm-badge.png"
+b64 = base64.b64encode(badge.read_bytes()).decode() if badge.exists() else ""
 LADDER = ["guest", "user", "www-data", "admin", "root"]
-priv = cfg.get("privilege", "user")
+priv = cfg.get("privilege", "guest")
 P = '<tspan fill="#f7768e">msf6</tspan> &gt; '
-
-
-def short(desc):
-    d = (desc or "").replace(" module completed", "").replace("Awarded when you achieve your ", "").replace("Awarded after ", "")
-    return d[:44]
-
-
-lines = [P + "loot", "",
-         '<tspan fill="#7aa2f7">Loot (Hack The Box · ' + escape(cfg.get("user", "DAGMON")) + ')</tspan>',
-         '<tspan fill="#565f89">' + "=" * 30 + "</tspan>"]
-if badges:
-    for b in badges[:6]:
-        date = str(b.get("awarded_at", ""))[:10]
-        lines.append(f'<tspan fill="#9ece6a">[+]</tspan> {escape(b["name"][:18]):<18}  '
-                     f'{escape(short(b.get("description"))):<44}  <tspan fill="#565f89">{date}</tspan>')
-    if len(badges) > 6:
-        lines.append(f'<tspan fill="#565f89">    … and {len(badges) - 6} more</tspan>')
-else:
-    lines.append('<tspan fill="#565f89">[*] no loot yet. the hunt continues.</tspan>')
 
 ladder = ""
 for step in LADDER:
     col = "#9ece6a" if LADDER.index(step) < LADDER.index(priv) else ("#e0af68" if step == priv else "#565f89")
-    ladder += f'<tspan fill="{col}">{"root (CPTS)" if step == "root" else step}</tspan>'
+    ladder += f'<tspan fill="{col}">{"root (Red Teamer)" if step == "root" else step}</tspan>'
     if step != "root":
         ladder += '<tspan fill="#565f89"> ─▶ </tspan>'
 
-lines += ["", P + "sessions -i 1",
-          f'<tspan fill="#7aa2f7">[*]</tspan> Target: <tspan fill="#bb9af7">{escape(cfg.get("path", "Penetration Tester"))} path</tspan> → CPTS   status: <tspan fill="#e0af68">exploiting…</tspan>',
-          f'<tspan fill="#7aa2f7">[*]</tspan> Privilege: {ladder}',
-          f'<tspan fill="#565f89">    current: </tspan><tspan fill="#e0af68">{escape(priv)}</tspan><tspan fill="#565f89"> · next stop: root</tspan>']
+TOP_H = 204                 # height of the Codeforces block
+BW, BH = 374, 87            # badge drawn at 1.5x (249x58 source)
+BY = TOP_H + 52
+side = [P + "db_status",
+        '<tspan fill="#7aa2f7">[*]</tspan> live from tryhackme.com/p/' + escape(user),
+        '<tspan fill="#565f89">    rank · level · badges · rooms · streak</tspan>',
+        '<tspan fill="#565f89">    auto-refreshed every 5 minutes</tspan>']
+lines = [P + "sessions -i 1",
+         f'<tspan fill="#7aa2f7">[*]</tspan> Target: <tspan fill="#bb9af7">{escape(cfg.get("path", "Red Teamer"))} path</tspan> on TryHackMe   status: <tspan fill="#e0af68">exploiting…</tspan>',
+         f'<tspan fill="#7aa2f7">[*]</tspan> Privilege: {ladder}',
+         f'<tspan fill="#565f89">    current: </tspan><tspan fill="#e0af68">{escape(priv)}</tspan><tspan fill="#565f89"> · next stop: root</tspan>']
 
-TOP_H = 204            # height of the Codeforces block
-BASE = TOP_H + 64      # first msfconsole line
 bottom = (f'<line x1="24" y1="{TOP_H}" x2="{W - 24}" y2="{TOP_H}" stroke="#292e42"/>'
-          f'<text x="24" y="{TOP_H + 34}" class="t h">🛡️ HACK THE BOX · {escape(cfg.get("user", "DAGMON"))}</text>')
-bottom += "".join(f'<text x="24" y="{BASE + i * 24}" class="t l" style="font-size:13.5px;animation-delay:{0.5 + i * 0.18:.2f}s">{ln}</text>'
+          f'<text x="24" y="{TOP_H + 34}" class="t h">🛡️ TRYHACKME · {escape(user)}</text>')
+if b64:
+    bottom += (f'<a href="https://tryhackme.com/p/{escape(user)}"><image class="l" style="animation-delay:.4s" x="24" y="{BY}" '
+               f'width="{BW}" height="{BH}" href="data:image/png;base64,{b64}"/></a>')
+bottom += "".join(f'<text x="430" y="{BY + 16 + i * 22}" class="t l" style="font-size:13px;animation-delay:{0.6 + i * 0.18:.2f}s">{ln}</text>'
+                  for i, ln in enumerate(side))
+BASE = BY + BH + 40
+bottom += "".join(f'<text x="24" y="{BASE + i * 24}" class="t l" style="font-size:13.5px;animation-delay:{1.4 + i * 0.18:.2f}s">{ln}</text>'
                   for i, ln in enumerate(lines))
 H = BASE + 24 * (len(lines) - 1) + 30
 
@@ -117,4 +115,4 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewB
 {bottom}
 </svg>'''
 (out / "stats.svg").write_text(svg, encoding="utf-8")
-print(f"stats: {cur} {rank}, {solved} solved · htb: {len(badges)} badges, priv {priv}")
+print(f"stats: {cur} {rank}, {solved} solved · thm badge {'ok' if b64 else 'missing'}, priv {priv}")

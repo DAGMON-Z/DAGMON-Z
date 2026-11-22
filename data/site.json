@@ -1,5 +1,5 @@
 {
- "generated": 1795369877,
+ "generated": 1795375635,
  "projects": [
   {
    "name": "neon-arch",
@@ -43,31 +43,11 @@
    "start": 1796135400
   }
  },
- "htb": {
+ "thm": {
   "user": "DAGMON",
-  "path": "Penetration Tester",
-  "privilege": "user",
-  "badges": [
-   {
-    "name": "Tactical",
-    "desc": "Penetration Testing Process module completed",
-    "date": "2026-09-27"
-   },
-   {
-    "name": "Cyber Rookie 365",
-    "desc": "Awarded after one year of learning at HTB Academy",
-    "date": "2025-12-07"
-   },
-   {
-    "name": "Academician",
-    "desc": "Introduction to Academy module completed",
-    "date": "2024-12-06"
-   },
-   {
-    "name": "Unwavering User",
-    "desc": "Awarded when you achieve your first weekly streak",
-    "date": "2024-12-06"
-   }
-  ]
+  "path": "Red Teamer",
+  "privilege": "guest",
+  "url": "https://tryhackme.com/p/DAGMON",
+  "badge": "https://raw.githubusercontent.com/DAGMON-Z/DAGMON-Z/main/assets/thm-badge.png"
  }
 }
