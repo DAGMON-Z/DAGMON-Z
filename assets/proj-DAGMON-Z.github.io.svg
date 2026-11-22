@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="230" viewBox="0 0 420 230">
+<style>.t { font:14px 'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace; fill:#c0caf5; white-space:pre; }</style>
+<rect x=".5" y=".5" width="419" height="229" rx="12" fill="#1a1b26" stroke="#292e42"/>
+<rect x="0" y="0" width="5" height="230" rx="2" fill="#7aa2f7"/>
+<text x="22" y="34" class="t" style="font-size:12px;fill:#565f89">❯ cat ~/projects/DAGMON-Z.github.io/README.md</text>
+<text x="22" y="66" class="t" style="font-size:20px;font-weight:bold;fill:#7aa2f7">DAGMON-Z.github.io</text>
+<text x="22" y="96" class="t" style="font-size:13px">DAGMON OS · an interactive terminal (type</text><text x="22" y="118" class="t" style="font-size:13px">help)</text>
+<text x="22" y="214" class="t" style="font-size:12px;fill:#565f89">→ open repo  ·  live demo</text>
+</svg>
