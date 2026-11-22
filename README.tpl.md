@@ -10,13 +10,9 @@
 
 {{PROJECTS}}
 
-### 🏁 Competitive programming
+### 🏁 Competitive programming · 🛡️ Pentesting
 
-<p align="center"><img src="assets/stats.svg" width="100%" alt="Codeforces rating, solved problems and next contest"></p>
-
-### 🛡️ Pentesting
-
-<p align="center"><img src="assets/security.svg" width="100%" alt="msfconsole: Hack The Box badges as loot, privilege escalation toward CPTS"></p>
+<p align="center"><img src="assets/stats.svg" width="100%" alt="Codeforces rating and next contest, and Hack The Box badges as msfconsole loot with a privilege ladder toward CPTS"></p>
 
 ### 📡 Live capture of my activity
 

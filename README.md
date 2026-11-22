@@ -10,19 +10,14 @@
 
 <!-- projects:start -->
 <p align="center">
-<a href="https://github.com/DAGMON-Z/DAGMON-Z.github.io"><img src="assets/proj-DAGMON-Z.github.io.svg" width="49%" alt="DAGMON-Z.github.io"></a>
 <a href="https://github.com/DAGMON-Z/neon-arch"><img src="assets/proj-neon-arch.svg" width="49%" alt="neon-arch"></a>
 <a href="https://github.com/DAGMON-Z/lunarchive"><img src="assets/proj-lunarchive.svg" width="49%" alt="lunarchive"></a>
 </p>
 <!-- projects:end -->
 
-### 🏁 Competitive programming
+### 🏁 Competitive programming · 🛡️ Pentesting
 
-<p align="center"><img src="assets/stats.svg" width="100%" alt="Codeforces rating, solved problems and next contest"></p>
-
-### 🛡️ Pentesting
-
-<p align="center"><img src="assets/security.svg" width="100%" alt="msfconsole: Hack The Box badges as loot, privilege escalation toward CPTS"></p>
+<p align="center"><img src="assets/stats.svg" width="100%" alt="Codeforces rating and next contest, and Hack The Box badges as msfconsole loot with a privilege ladder toward CPTS"></p>
 
 ### 📡 Live capture of my activity
 
