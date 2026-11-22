@@ -5,7 +5,8 @@ Usage: python3 make_projects.py <gh_json_dir> <out_dir>
   <gh_json_dir>/lang-<repo>.json = GET /repos/<user>/<repo>/languages
 Writes <out_dir>/proj-<repo>.svg for each repo and <out_dir>/projects.md (the README block).
 
-Rules: public, not a fork, not archived, not the profile repo itself, and no `hide-from-profile` topic.
+Rules: public, not a fork, not archived, not the profile repos (DAGMON-Z, DAGMON-Z.github.io), and no
+`hide-from-profile` topic. Only the 2 newest by creation date are shown: a new repo replaces the older one.
 Order: most recently pushed first. A new repo shows up on the next run automatically.
 """
 import json
@@ -21,8 +22,10 @@ ACCENTS = ["#7aa2f7", "#bb9af7", "#9ece6a", "#7dcfff", "#e0af68", "#f7768e"]
 
 repos = json.loads((src / "repos.json").read_text())
 repos = [r for r in repos if not r["fork"] and not r["archived"] and not r.get("private")
-         and r["name"].lower() != USER.lower() and "hide-from-profile" not in r.get("topics", [])]
-repos.sort(key=lambda r: r["pushed_at"], reverse=True)
+         and r["name"].lower() not in (USER.lower(), f"{USER.lower()}.github.io")
+         and "hide-from-profile" not in r.get("topics", [])]
+repos.sort(key=lambda r: r["created_at"], reverse=True)
+repos = repos[:2]
 
 
 def card(r, accent):
