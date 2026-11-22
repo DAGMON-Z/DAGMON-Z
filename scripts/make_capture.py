@@ -1,4 +1,4 @@
-"""Wireshark-style capture of real recent activity (GitHub events + Codeforces submissions).
+"""Wireshark-style capture of real recent activity (GitHub events + Codeforces submissions + HTB badges).
 
 Usage: python3 make_capture.py <cache_dir> <out_dir>
 """
@@ -26,41 +26,75 @@ def ts(s):
     return datetime.fromisoformat(s.replace("Z", "+00:00"))
 
 
+ME = "DAGMON"  # one name for every packet, whatever the platform
 rows = []  # (time, source, destination, proto, color, info)
 for e in events:
     repo = e["repo"]["name"].split("/")[-1]
     t, p = ts(e["created_at"]), e["payload"]
     if e["type"] == "PushEvent":
         m = msgs.get(p.get("head"), "")
-        rows.append((t, "DAGMON-Z", repo, "PUSH", "#9ece6a", f'"{m.splitlines()[0][:38]}"' if m else "new commits"))
+        rows.append((t, ME, repo, "PUSH", "#9ece6a", f'"{m.splitlines()[0][:38]}"' if m else "new commits"))
     elif e["type"] == "CreateEvent" and p.get("ref_type") == "repository":
-        rows.append((t, "DAGMON-Z", repo, "CREATE", "#7dcfff", "new repository"))
+        rows.append((t, ME, repo, "CREATE", "#7dcfff", "new repository"))
     elif e["type"] == "WatchEvent":
-        rows.append((t, e["actor"]["login"][:12], repo, "STAR", "#e0af68", "★ starred"))
+        rows.append((t, ME, repo, "STAR", "#e0af68", "★ starred"))
     elif e["type"] == "PullRequestEvent":
-        rows.append((t, "DAGMON-Z", repo, "PR", "#7dcfff", f'#{p.get("number")} {p.get("action")}'))
+        rows.append((t, ME, repo, "PR", "#7dcfff", f'#{p.get("number")} {p.get("action")}'))
     elif e["type"] == "ReleaseEvent":
-        rows.append((t, "DAGMON-Z", repo, "RELEASE", "#bb9af7", p.get("release", {}).get("tag_name", "")))
+        rows.append((t, ME, repo, "RELEASE", "#bb9af7", p.get("release", {}).get("tag_name", "")))
 
 VER = {"OK": ("Accepted", "#9ece6a"), "WRONG_ANSWER": ("Wrong answer", "#f7768e"),
        "TIME_LIMIT_EXCEEDED": ("TLE", "#e0af68"), "RUNTIME_ERROR": ("Runtime error", "#bb9af7")}
 for s in subs[:10]:
     v, col = VER.get(s.get("verdict"), (str(s.get("verdict", "")).replace("_", " ").title(), "#a9b1d6"))
     pr = s["problem"]
-    rows.append((datetime.fromtimestamp(s["creationTimeSeconds"], timezone.utc), "DAGMON", "codeforces",
+    rows.append((datetime.fromtimestamp(s["creationTimeSeconds"], timezone.utc), ME, "codeforces",
                  "SUBMIT", "#bb9af7", f'{pr.get("contestId", "")}{pr["index"]} · {v}'))
 
-# Keep it short: newest 5 events, shown oldest -> newest like a real capture.
-rows = sorted(rows, key=lambda r: r[0], reverse=True)[:5][::-1]
-t0 = rows[0][0] if rows else datetime.now(timezone.utc)
-lines = ['<tspan fill="#7aa2f7">No.  Time        Source       Destination    Proto    Info</tspan>',
-         '<tspan fill="#565f89">' + "─" * 78 + "</tspan>"]
-for i, (t, s, d, proto, col, info) in enumerate(rows, 1):
-    rel = (t - t0).total_seconds() / 3600
-    lines.append(f'{i:<4} {rel:>7.1f}h    {escape(s[:12]):<12} {escape(d[:14]):<14} '
+# Hack The Box: badges from the public profile (data/htb-public.json, refreshed hourly).
+_htb = Path("data/htb-public.json")
+for b in (json.loads(_htb.read_text())["badges"] if _htb.exists() else []):
+    try:
+        t = ts(str(b["awarded_at"]))
+    except ValueError:
+        continue
+    what = (b.get("description") or b["name"]).replace(" module completed", " ✓").replace("Awarded when you achieve your ", "").replace("Awarded after ", "")
+    rows.append((t, ME, "hackthebox", "PWN", "#f7768e", f'🏅 {b["name"]} · {what}'[:44]))
+
+# Keep it short (6 packets) but fair: the newest event from each source is always included,
+# then the rest are the newest overall. Shown oldest -> newest, like a real capture.
+rows.sort(key=lambda r: r[0], reverse=True)
+pick = []
+for dest in ("codeforces", "hackthebox"):
+    r = next((r for r in rows if r[2] == dest), None)
+    if r:
+        pick.append(r)
+gh = next((r for r in rows if r[2] not in ("codeforces", "hackthebox")), None)
+if gh:
+    pick.append(gh)
+for r in rows:
+    if len(pick) >= 6:
+        break
+    if r not in pick:
+        pick.append(r)
+rows = sorted(pick, key=lambda r: r[0])
+
+
+def ago(t):
+    s = max(0, (datetime.now(timezone.utc) - t).total_seconds())
+    for unit, n in (("d", 86400), ("h", 3600), ("m", 60)):
+        if s >= n:
+            return f"{int(s // n)}{unit} ago"
+    return "just now"
+
+
+lines = ['<tspan fill="#7aa2f7">No.  Age         Source    Destination    Proto    Info</tspan>',
+         '<tspan fill="#565f89">' + "─" * 82 + "</tspan>"]
+for i, (t, s_, d, proto, col, info) in enumerate(rows, 1):
+    lines.append(f'{i:<4} {ago(t):<11} {escape(s_[:9]):<9} {escape(d[:14]):<14} '
                  f'<tspan fill="{col}">{proto:<8}</tspan> {escape(info)}')
-lines.append(f'{len(rows) + 1:<4} {"now":>8}    you          DAGMON-Z       <tspan fill="#7aa2f7">HTTP    </tspan> GET /profile 200 OK  <tspan fill="#565f89">← that\'s you</tspan>')
-lines += ["", '<tspan fill="#565f89">real GitHub + Codeforces activity · refreshed automatically</tspan>']
+lines.append(f'{len(rows) + 1:<4} {"now":<11} you       DAGMON         <tspan fill="#7aa2f7">HTTP    </tspan> GET /profile 200 OK  <tspan fill="#565f89">← that\'s you</tspan>')
+lines += ["", '<tspan fill="#565f89">real GitHub + Codeforces + Hack The Box activity · refreshed automatically</tspan>']
 
 h = 80 + 24 * len(lines)
 body = "".join(f'<text x="24" y="{62 + i * 24}" class="t l" style="animation-delay:{0.3 + i * 0.3:.1f}s">{ln}</text>'

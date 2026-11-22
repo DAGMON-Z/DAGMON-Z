@@ -1,8 +1,10 @@
 <!-- This file is generated from README.tpl.md by .github/workflows/refresh.yml. Edit the template, not README.md. -->
 
 <p align="center">
-  <img src="assets/main.svg" width="100%" alt="DAGMON OS boots, then a guest runs nmap against dagmon: competitive programmer, pentester in training, networking, Arch Linux">
+  <a href="https://dagmon-z.github.io/"><img src="assets/main.svg" width="100%" alt="DAGMON OS boots, then a guest runs nmap against dagmon: competitive programmer, pentester in training, networking, Arch Linux"></a>
 </p>
+
+<p align="center"><a href="https://dagmon-z.github.io/"><b>⌨️ Type in my terminal →</b></a></p>
 
 ### 📁 ~/projects
 
@@ -13,25 +15,13 @@
 </p>
 <!-- projects:end -->
 
-### 💻 Shared shell: run a command on my profile
+### 🏁 Competitive programming
 
-<p align="center">Click a command. It opens an issue, a bot runs it, and your command shows up here.</p>
+<p align="center"><img src="assets/stats.svg" width="100%" alt="Codeforces rating, solved problems and next contest"></p>
 
-<p align="center">
-  <a href="https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=shell%3A+whoami&body=Just+press+Submit.+The+bot+replies+in+a+few+seconds."><code>whoami</code></a>&nbsp;
-  <a href="https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=shell%3A+ping+dagmon&body=Just+press+Submit.+The+bot+replies+in+a+few+seconds."><code>ping dagmon</code></a>&nbsp;
-  <a href="https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=shell%3A+ls+~%2Fprojects&body=Just+press+Submit.+The+bot+replies+in+a+few+seconds."><code>ls ~/projects</code></a>&nbsp;
-  <a href="https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=shell%3A+neofetch&body=Just+press+Submit.+The+bot+replies+in+a+few+seconds."><code>neofetch</code></a>&nbsp;
-  <a href="https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=shell%3A+cat+%2Fetc%2Fshadow&body=Just+press+Submit.+The+bot+replies+in+a+few+seconds."><code>cat /etc/shadow</code></a>&nbsp;
-  <a href="https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=shell%3A+sudo+rm+-rf+%2F&body=Just+press+Submit.+The+bot+replies+in+a+few+seconds."><code>sudo rm -rf /</code></a>&nbsp;
-  <a href="https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=shell%3A+ssh+root%40dagmon&body=Just+press+Submit.+The+bot+replies+in+a+few+seconds."><code>ssh root@dagmon</code></a>
-</p>
+### 🛡️ Pentesting
 
-<p align="center"><img src="assets/issue-shell.svg" width="100%" alt="last commands run by visitors"></p>
-
-### 🏁 Competitive programming & pentesting path
-
-<p align="center"><img src="assets/stats.svg" width="100%" alt="Codeforces rating and Hack The Box Penetration Tester path progress"></p>
+<p align="center"><img src="assets/security.svg" width="100%" alt="msfconsole: Hack The Box badges as loot, privilege escalation toward CPTS"></p>
 
 ### 📡 Live capture of my activity
 
