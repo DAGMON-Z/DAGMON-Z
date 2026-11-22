@@ -1,26 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="230" viewBox="0 0 860 230">
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="200" viewBox="0 0 860 200">
 <style>
 .t { font:14px 'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace; fill:#c0caf5; }
 .h { font-size:13px; fill:#565f89; letter-spacing:1px; }
 .line { stroke-dasharray:800; stroke-dashoffset:800; animation:draw 2s ease-out forwards .3s; }
 @keyframes draw { to { stroke-dashoffset:0; } }
 </style>
-<rect width="860" height="230" rx="12" fill="#1a1b26" stroke="#292e42"/>
+<rect width="860" height="200" rx="12" fill="#1a1b26" stroke="#292e42"/>
 <text x="24" y="36" class="t h">CODEFORCES · DAGMON</text>
-<text x="24" y="80" class="t" style="font-size:30px;font-weight:bold;fill:#a9b1d6">770</text>
-<text x="100" y="80" class="t" style="fill:#a9b1d6">Newbie</text>
-<text x="210" y="80" class="t" style="fill:#9ece6a">↗ +405 in 3 contests</text>
-<text x="24" y="108" class="t">max 770 · 7 solved · C++23</text>
-<polyline class="line" fill="none" stroke="#7aa2f7" stroke-width="2.5" points="24,186 212,152 400,128"/><circle cx="24" cy="186" r="3.5" fill="#a9b1d6"/><circle cx="212" cy="152" r="3.5" fill="#a9b1d6"/><circle cx="400" cy="128" r="3.5" fill="#a9b1d6"/>
-<text x="24" y="210" class="t" style="font-size:12px;fill:#e0af68">⏱ next round in 8 days · Kotlin Heroes: Practice 15</text>
-<line x1="430" y1="24" x2="430" y2="206" stroke="#292e42"/>
-<text x="456" y="36" class="t h">HACK THE BOX · DAGMON</text>
-<text x="456" y="70" class="t" style="font-size:17px;font-weight:bold;fill:#9ece6a">Penetration Tester</text>
-<text x="456" y="90" class="t" style="font-size:12px;fill:#565f89">HTB Academy job-role path  →  🎯 CPTS</text>
-<rect x="456" y="102" width="300" height="10" rx="5" fill="#292e42"/>
-<rect x="456" y="102" width="0" height="10" rx="5" fill="#9ece6a"><animate attributeName="width" to="10" begin=".6s" dur="1.2s" fill="freeze"/></rect>
-<text x="766" y="112" class="t" style="font-size:12px;fill:#9ece6a">4%</text>
-<text x="456" y="136" class="t">1/28 modules completed</text>
-<text x="456" y="166" class="t">Lvl <tspan style="fill:#9ece6a;font-weight:bold">4</tspan> · Beginner · 770 XP</text>
-<text x="456" y="192" class="t">🏅 4 badges · latest: Tactical</text>
+<text x="24" y="84" class="t" style="font-size:34px;font-weight:bold;fill:#a9b1d6">770</text>
+<text x="112" y="84" class="t" style="font-size:16px;fill:#a9b1d6">Newbie</text>
+<text x="24" y="116" class="t" style="fill:#9ece6a">↗ +405 in 3 contests</text>
+<text x="24" y="142" class="t">max 770 · 7 solved · C++23</text>
+<text x="24" y="176" class="t" style="font-size:12px;fill:#e0af68">⏱ next round in 8 days · Kotlin Heroes: Practice 15</text>
+<line x1="440" y1="24" x2="440" y2="176" stroke="#292e42"/>
+<line x1="470" y1="174" x2="830" y2="174" stroke="#292e42"/>
+<polyline class="line" fill="none" stroke="#7aa2f7" stroke-width="2.5" points="470,160 650,96 830,50"/><circle cx="470" cy="160" r="4" fill="#a9b1d6"/><circle cx="650" cy="96" r="4" fill="#a9b1d6"/><circle cx="830" cy="50" r="4" fill="#a9b1d6"/><text x="470" y="148" text-anchor="middle" class="t" style="font-size:11px;fill:#565f89">365</text><text x="650" y="84" text-anchor="middle" class="t" style="font-size:11px;fill:#565f89">600</text><text x="830" y="38" text-anchor="middle" class="t" style="font-size:11px;fill:#565f89">770</text>
+<text x="830" y="192" text-anchor="end" class="t" style="font-size:11px;fill:#565f89">rating history</text>
 </svg>

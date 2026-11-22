@@ -1,4 +1,4 @@
-name: shell + ctf bots
+name: ctf bot
 
 on:
   issues:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   bot:
-    if: startsWith(github.event.issue.title, 'shell:') || startsWith(github.event.issue.title, 'flag:')
+    if: startsWith(github.event.issue.title, 'flag:')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
@@ -26,10 +26,7 @@ jobs:
         env:
           CTF_FLAGS: ${{ secrets.CTF_FLAGS }}
         run: |
-          case "$ISSUE_TITLE" in
-            shell:*) BOT=scripts/shell_bot.py; FILES="data/shell-log.json assets/issue-shell.svg"; TAG=shell ;;
-            *)       BOT=scripts/ctf_bot.py;   FILES="data/ctf-solves.json assets/ctf-hof.svg";   TAG=ctf ;;
-          esac
+          BOT=scripts/ctf_bot.py; FILES="data/ctf-solves.json assets/ctf-hof.svg"; TAG=ctf
           git config user.name  "dagmon-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4 5; do

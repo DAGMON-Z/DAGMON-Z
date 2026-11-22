@@ -7,8 +7,10 @@ cd "$(dirname "$0")/.."
 python3 scripts/fetch.py .cache
 
 python3 scripts/make_main.py assets                   || echo "warn: main terminal kept as-is"
-python3 scripts/make_live.py .cache assets data/htb.json || echo "warn: stats card kept as-is"
+python3 scripts/make_live.py .cache assets           || echo "warn: stats card kept as-is"
+python3 scripts/make_security.py assets               || echo "warn: security panel kept as-is"
 python3 scripts/make_capture.py .cache assets         || echo "warn: capture kept as-is"
+python3 scripts/make_site_data.py .cache             || echo "warn: web terminal data kept as-is"
 
 # Projects: rebuild cards from scratch so deleted/renamed repos disappear.
 tmp=$(mktemp -d)
