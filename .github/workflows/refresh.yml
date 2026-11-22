@@ -1,0 +1,47 @@
+name: refresh profile
+
+on:
+  # Fastest schedule GitHub allows. Picks up new repos, CF results and activity.
+  schedule:
+    - cron: "*/5 * * * *"
+  # "Run workflow" button on the Actions tab: refresh right now, on demand.
+  workflow_dispatch:
+  # Editing data/htb.json, the template or the scripts rebuilds immediately.
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "scripts/**"
+      - "README.tpl.md"
+      - ".github/workflows/refresh.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rebuild profile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/build.sh
+
+      - name: Commit if anything changed
+        run: |
+          git add README.md assets
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+          else
+            git config user.name  "dagmon-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: refresh profile"
+            git push
+          fi

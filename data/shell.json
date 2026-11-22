@@ -1,0 +1,38 @@
+{
+  "exact": {
+    "whoami": "dagmon · competitive programmer · pentester in training",
+    "id": "uid=1000(dagmon) gid=1000(dagmon) groups=1000(dagmon),998(wheel),1337(ctf)",
+    "hostname": "dagmon-arch",
+    "uname -a": "Linux dagmon-arch 6.x-arch1-1 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux",
+    "pwd": "/home/dagmon",
+    "ls": "projects/  cp/  notes/  .secret/",
+    "ls -la": "drwx------ .secret/\ndrwxr-xr-x projects/  cp/  notes/",
+    "ls ~/projects": "see the ~/projects section above, it updates itself",
+    "ls .secret": "ls: cannot open directory '.secret': Permission denied",
+    "neofetch": "OS: Arch Linux · WM: Hyprland · Theme: Tokyo Night · Shell: zsh",
+    "fastfetch": "OS: Arch Linux · WM: Hyprland · Theme: Tokyo Night · Shell: zsh",
+    "ping dagmon": "64 bytes from dagmon: icmp_seq=1 ttl=64 mood=caffeinated\n64 bytes from dagmon: icmp_seq=2 ttl=64 mood=solving_problems",
+    "cat /etc/shadow": "nice try. permission denied. (curious hackers counter +1)",
+    "cat /etc/passwd": "dagmon:x:1000:1000::/home/dagmon:/usr/bin/zsh",
+    "cat flag.txt": "real flags are hidden in 4 places. start with the base64 below.",
+    "ssh root@dagmon": "root@dagmon's password: ******\nPermission denied (publickey). Maybe try the CTF?",
+    "nmap dagmon": "you already scanned me at the top of the page :)",
+    "exit": "logout\nConnection to dagmon closed. (come back soon)",
+    "help": "try: whoami, ls, neofetch, ping dagmon, cat flag.txt, sudo anything...",
+    "pacman -syu": "error: you cannot perform this operation unless you are root.",
+    "vim": "you are now stuck in vim forever. (:q! to escape)",
+    "nvim": "you are now stuck in neovim forever. (:q! to escape)",
+    "hello": "zsh: command not found: hello\n(but hello to you too!)"
+  },
+  "prefix": {
+    "sudo": "dagmon is not in the sudoers file. This incident will be reported.",
+    "rm": "rm: refusing to remove anything on dagmon's profile. nice try.",
+    "ping": "ping: unknown host. try: ping dagmon",
+    "curl": "curl: (7) Failed to connect: the profile has no internet. only vibes.",
+    "wget": "wget: unable to resolve host. the profile has no internet.",
+    "nc": "Ncat: Connection refused. port 31337 is filtered for a reason.",
+    "chmod": "chmod: changing permissions: Operation not permitted",
+    "cd": "",
+    "cat": "cat: No such file or directory"
+  }
+}

@@ -1,0 +1,51 @@
+name: shell + ctf bots
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  bot:
+    if: startsWith(github.event.issue.title, 'shell:') || startsWith(github.event.issue.title, 'flag:')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      # Untrusted input: only ever passed through env vars, never pasted into the script.
+      ISSUE_TITLE: ${{ github.event.issue.title }}
+      ISSUE_USER: ${{ github.event.issue.user.login }}
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run bot and push (retries if another run pushed first)
+        env:
+          CTF_FLAGS: ${{ secrets.CTF_FLAGS }}
+        run: |
+          case "$ISSUE_TITLE" in
+            shell:*) BOT=scripts/shell_bot.py; FILES="data/shell-log.json assets/issue-shell.svg"; TAG=shell ;;
+            *)       BOT=scripts/ctf_bot.py;   FILES="data/ctf-solves.json assets/ctf-hof.svg";   TAG=ctf ;;
+          esac
+          git config user.name  "dagmon-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            python3 "$BOT"
+            git add $FILES
+            git diff --cached --quiet && break
+            git commit -qm "bot($TAG): issue #$ISSUE_NUMBER"
+            git push -q origin HEAD:main && break
+            sleep $((i * 3))
+          done
+
+      - name: Reply and close
+        run: |
+          if [ -f .cache/ctf-redact ]; then
+            gh issue edit "$ISSUE_NUMBER" --title "flag: [redacted]" --body "[redacted by bot]"
+          fi
+          gh issue comment "$ISSUE_NUMBER" --body-file .cache/reply.md
+          gh issue close "$ISSUE_NUMBER"

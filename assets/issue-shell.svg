@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="212" viewBox="0 0 860 212">
+<style>.t { font:14px 'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace; fill:#c0caf5; white-space:pre; } .l { opacity:0; animation:show .01s forwards; } @keyframes show { to { opacity:1; } }</style>
+<rect width="860" height="212" rx="12" fill="#1a1b26"/>
+<rect width="860" height="34" rx="12" fill="#16161e"/><rect y="22" width="860" height="12" fill="#16161e"/>
+<circle cx="22" cy="17" r="6" fill="#f7768e"/><circle cx="42" cy="17" r="6" fill="#e0af68"/><circle cx="62" cy="17" r="6" fill="#9ece6a"/>
+<text x="430" y="22" text-anchor="middle" class="t" style="font-size:13px;fill:#565f89">guest@dagmon-z · shared shell (via GitHub Issues)</text>
+<text x="24" y="62" class="t l" style="animation-delay:0.20s"><tspan fill="#565f89"># Click a command above. It opens an issue; a bot replies and your command appears here.</tspan></text><text x="24" y="84" class="t l" style="animation-delay:0.35s"></text><text x="24" y="106" class="t l" style="animation-delay:0.50s"><tspan fill="#565f89">no commands yet. be the first one!</tspan></text><text x="24" y="128" class="t l" style="animation-delay:0.65s"></text><text x="24" y="150" class="t l" style="animation-delay:0.80s"></text><text x="24" y="172" class="t l" style="animation-delay:0.95s"><tspan fill="#565f89">last 0 visitor commands · 0 commands run so far</tspan></text></svg>
