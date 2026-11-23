@@ -11,7 +11,7 @@
 <!-- projects:start -->
 <p align="center">
 <a href="https://github.com/DAGMON-Z/airlock"><img src="assets/proj-airlock.svg?v=76783600d5" width="49%" alt="airlock"></a>
-<a href="https://github.com/DAGMON-Z/neon-arch"><img src="assets/proj-neon-arch.svg?v=7f36f72a4a" width="49%" alt="neon-arch"></a>
+<a href="https://github.com/DAGMON-Z/neon-arch"><img src="assets/proj-neon-arch.svg?v=7c9ca5975e" width="49%" alt="neon-arch"></a>
 </p>
 <!-- projects:end -->
 
@@ -21,7 +21,7 @@
 
 ### 📡 Live capture of my activity
 
-<p align="center"><img src="assets/capture.svg?v=77f0808c78" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
+<p align="center"><img src="assets/capture.svg?v=a5cc9fd9a9" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
 
 ### 🚩 Profile CTF: port 31337 was filtered for a reason
 

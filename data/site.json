@@ -1,5 +1,5 @@
 {
- "generated": 1795467044,
+ "generated": 1795477840,
  "projects": [
   {
    "name": "neon-arch",
@@ -10,7 +10,7 @@
    "langs": [
     "Shell",
     "Lua",
-    "QML"
+    "Python"
    ]
   },
   {
