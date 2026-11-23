@@ -81,10 +81,45 @@ for step in LADDER:
 TOP_H = 204                 # height of the Codeforces block
 BW, BH = 374, 87            # badge drawn at 1.5x (249x58 source)
 BY = TOP_H + 52
+# Synced stats (tools/thm-sync): drawn here, so they're always current.
+# Without them, the official badge PNG above is shown instead.
+stats = cfg.get("stats") or {}
+
+
+def num(v):
+    return f"{v:,}" if isinstance(v, (int, float)) and not isinstance(v, bool) else "?"
+
+
+def badge_card():
+    lvl = stats.get("level")
+    cx, cy = 24 + 42, BY + BH // 2
+    top = stats.get("topPercentage")
+    top = f" · top {top}%" if isinstance(top, (int, float)) else ""
+    league = stats.get("leagueTier")
+    league = f' <tspan fill="#565f89">· {escape(str(league).lower())} league</tspan>' if league else ""
+    streak = stats.get("streak")
+    streak = f"   🔥 {num(streak)}" if isinstance(streak, (int, float)) else ""
+    rows = [
+        (14.5, f'<tspan fill="#c0caf5" font-weight="bold">{escape(str(stats.get("username", user)))}</tspan>{league}'),
+        (13, f'<tspan fill="#e0af68">🏆 #{num(stats.get("rank"))}</tspan><tspan fill="#565f89">{top}</tspan>'),
+        (13, f'🚪 {num(stats.get("completedRoomsNumber"))} rooms   🏅 {num(stats.get("badgesNumber"))}{streak}'),
+    ]
+    g = (f'<rect x="24" y="{BY}" width="{BW}" height="{BH}" rx="10" fill="#16161e" stroke="#9ece6a" stroke-opacity=".45"/>'
+         f'<circle cx="{cx}" cy="{cy}" r="29" fill="#1a1b26" stroke="#9ece6a" stroke-width="2"/>'
+         f'<text x="{cx}" y="{cy + 5}" text-anchor="middle" class="t" style="font-size:14px;fill:#9ece6a;font-weight:bold">'
+         f'{hex(lvl) if isinstance(lvl, int) else "lvl"}</text>')
+    g += "".join(f'<text x="118" y="{BY + 26 + i * 23}" class="t" style="font-size:{size}px">{txt}</text>'
+                 for i, (size, txt) in enumerate(rows))
+    return (f'<a href="https://tryhackme.com/p/{escape(user)}"><g class="l" style="animation-delay:.4s">{g}</g></a>')
+
+
+synced = time.strftime("%d %b %H:%M UTC", time.gmtime(stats["synced"])) if stats.get("synced") else ""
+
 side = [P + "db_status",
         '<tspan fill="#7aa2f7">[*]</tspan> live from tryhackme.com/p/' + escape(user),
-        '<tspan fill="#565f89">    rank · level · badges · rooms · streak</tspan>',
-        '<tspan fill="#565f89">    auto-refreshed every 5 minutes</tspan>']
+        '<tspan fill="#565f89">    rank · level · badges · rooms</tspan>',
+        (f'<tspan fill="#565f89">    synced {synced}, as I solve rooms</tspan>' if stats
+         else '<tspan fill="#565f89">    auto-refreshed every 5 minutes</tspan>')]
 lines = [P + "sessions -i 1",
          f'<tspan fill="#7aa2f7">[*]</tspan> Target: <tspan fill="#bb9af7">{escape(cfg.get("path", "Red Teamer"))} path</tspan> on TryHackMe   status: <tspan fill="#e0af68">exploiting…</tspan>',
          f'<tspan fill="#7aa2f7">[*]</tspan> Privilege: {ladder}',
@@ -92,7 +127,9 @@ lines = [P + "sessions -i 1",
 
 bottom = (f'<line x1="24" y1="{TOP_H}" x2="{W - 24}" y2="{TOP_H}" stroke="#292e42"/>'
           f'<text x="24" y="{TOP_H + 34}" class="t h">🛡️ TRYHACKME · {escape(user)}</text>')
-if b64:
+if stats:
+    bottom += badge_card()
+elif b64:
     bottom += (f'<a href="https://tryhackme.com/p/{escape(user)}"><image class="l" style="animation-delay:.4s" x="24" y="{BY}" '
                f'width="{BW}" height="{BH}" href="data:image/png;base64,{b64}"/></a>')
 bottom += "".join(f'<text x="430" y="{BY + 16 + i * 22}" class="t l" style="font-size:13px;animation-delay:{0.6 + i * 0.18:.2f}s">{ln}</text>'
@@ -115,4 +152,4 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewB
 {bottom}
 </svg>'''
 (out / "stats.svg").write_text(svg, encoding="utf-8")
-print(f"stats: {cur} {rank}, {solved} solved · thm badge {'ok' if b64 else 'missing'}, priv {priv}")
+print(f"stats: {cur} {rank}, {solved} solved · thm {'synced stats' if stats else 'badge ok' if b64 else 'missing'}, priv {priv}")

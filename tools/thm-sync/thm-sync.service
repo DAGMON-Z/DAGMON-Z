@@ -1,0 +1,11 @@
+[Unit]
+Description=Keep the TryHackMe stats on the GitHub profile up to date
+After=network-online.target
+
+[Service]
+ExecStart=%h/src/DAGMON-Z/tools/thm-sync/thm-sync
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

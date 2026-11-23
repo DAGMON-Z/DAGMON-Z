@@ -45,7 +45,7 @@ cf = {
 
 thm = json.loads(Path("data/thm.json").read_text())
 data = {"generated": int(time.time()), "projects": projects, "cf": cf,
-        "thm": {"user": thm.get("user"), "path": thm.get("path"), "privilege": thm.get("privilege"),
+        "thm": {"user": thm.get("user"), "path": thm.get("path"), "privilege": thm.get("privilege"), "stats": thm.get("stats"),
                 "url": "https://tryhackme.com/p/" + thm.get("user", "DAGMON"),
                 "badge": "https://raw.githubusercontent.com/DAGMON-Z/DAGMON-Z/main/assets/thm-badge.png"}}
 Path("data/site.json").write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
