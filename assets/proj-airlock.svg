@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="230" viewBox="0 0 420 230">
+<style>.t { font:14px 'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace; fill:#c0caf5; white-space:pre; }</style>
+<rect x=".5" y=".5" width="419" height="229" rx="12" fill="#1a1b26" stroke="#292e42"/>
+<rect x="0" y="0" width="5" height="230" rx="2" fill="#7aa2f7"/>
+<text x="22" y="34" class="t" style="font-size:12px;fill:#565f89">❯ cat ~/projects/airlock/README.md</text>
+<text x="22" y="66" class="t" style="font-size:20px;font-weight:bold;fill:#7aa2f7">airlock</text>
+<text x="22" y="96" class="t" style="font-size:13px">Ask AI about private documents without</text><text x="22" y="118" class="t" style="font-size:13px">telling it who you are. Hybrid on-device +</text><text x="22" y="140" class="t" style="font-size:13px">cloud AI with Firebase AI Logic.</text><rect x="22" y="166" width="96" height="22" rx="11" fill="none" stroke="#7aa2f7" stroke-opacity=".5"/><text x="70.0" y="181" text-anchor="middle" class="t" style="font-size:12px;fill:#7aa2f7">TypeScript</text><rect x="126" y="166" width="40" height="22" rx="11" fill="none" stroke="#7aa2f7" stroke-opacity=".5"/><text x="146.0" y="181" text-anchor="middle" class="t" style="font-size:12px;fill:#7aa2f7">CSS</text><rect x="174" y="166" width="48" height="22" rx="11" fill="none" stroke="#7aa2f7" stroke-opacity=".5"/><text x="198.0" y="181" text-anchor="middle" class="t" style="font-size:12px;fill:#7aa2f7">HTML</text>
+<text x="22" y="214" class="t" style="font-size:12px;fill:#565f89">→ open repo  ·  live demo</text>
+</svg>

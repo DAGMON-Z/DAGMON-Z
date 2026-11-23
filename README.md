@@ -10,18 +10,18 @@
 
 <!-- projects:start -->
 <p align="center">
-<a href="https://github.com/DAGMON-Z/neon-arch"><img src="assets/proj-neon-arch.svg?v=3ab74d109c" width="49%" alt="neon-arch"></a>
-<a href="https://github.com/DAGMON-Z/lunarchive"><img src="assets/proj-lunarchive.svg?v=9d7452fd88" width="49%" alt="lunarchive"></a>
+<a href="https://github.com/DAGMON-Z/airlock"><img src="assets/proj-airlock.svg?v=76783600d5" width="49%" alt="airlock"></a>
+<a href="https://github.com/DAGMON-Z/neon-arch"><img src="assets/proj-neon-arch.svg?v=7f36f72a4a" width="49%" alt="neon-arch"></a>
 </p>
 <!-- projects:end -->
 
 ### 🏁 Competitive programming · 🛡️ Pentesting
 
-<p align="center"><img src="assets/stats.svg?v=8cccdfbe3d" width="100%" alt="Codeforces rating and next contest, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
+<p align="center"><img src="assets/stats.svg?v=6d2251f74d" width="100%" alt="Codeforces rating and next contest, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
 
 ### 📡 Live capture of my activity
 
-<p align="center"><img src="assets/capture.svg?v=0000af7bde" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
+<p align="center"><img src="assets/capture.svg?v=77f0808c78" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
 
 ### 🚩 Profile CTF: port 31337 was filtered for a reason
 
