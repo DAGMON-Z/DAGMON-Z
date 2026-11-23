@@ -1,5 +1,5 @@
 {
- "generated": 1795465981,
+ "generated": 1795466640,
  "projects": [
   {
    "name": "neon-arch",
@@ -59,6 +59,7 @@
   "user": "DAGMON",
   "path": "Red Teamer",
   "privilege": "guest",
+  "stats": null,
   "url": "https://tryhackme.com/p/DAGMON",
   "badge": "https://raw.githubusercontent.com/DAGMON-Z/DAGMON-Z/main/assets/thm-badge.png"
  }
