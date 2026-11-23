@@ -26,12 +26,14 @@ jobs:
         env:
           CTF_FLAGS: ${{ secrets.CTF_FLAGS }}
         run: |
-          BOT=scripts/ctf_bot.py; FILES="data/ctf-solves.json assets/ctf-hof.svg"; TAG=ctf
+          BOT=scripts/ctf_bot.py; FILES="data/ctf-solves.json assets/ctf-hof.svg README.md"; TAG=ctf
           git config user.name  "dagmon-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4 5; do
             git fetch -q origin main && git reset -q --hard origin/main
             python3 "$BOT"
+            # New scoreboard -> new image link in the README, so it shows at once
+            python3 scripts/make_readme.py
             git add $FILES
             git diff --cached --quiet && break
             git commit -qm "bot($TAG): issue #$ISSUE_NUMBER"

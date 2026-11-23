@@ -1,7 +1,7 @@
 <!-- This file is generated from README.tpl.md by .github/workflows/refresh.yml. Edit the template, not README.md. -->
 
 <p align="center">
-  <a href="https://dagmon-z.github.io/"><img src="assets/main.svg" width="100%" alt="DAGMON OS boots, then a guest runs nmap against dagmon: competitive programmer, pentester in training, networking, Arch Linux"></a>
+  <a href="https://dagmon-z.github.io/"><img src="assets/main.svg?v=adbc25368b" width="100%" alt="DAGMON OS boots, then a guest runs nmap against dagmon: competitive programmer, pentester in training, networking, Arch Linux"></a>
 </p>
 
 <p align="center"><a href="https://dagmon-z.github.io/"><b>⌨️ Type in my terminal →</b></a></p>
@@ -10,22 +10,22 @@
 
 <!-- projects:start -->
 <p align="center">
-<a href="https://github.com/DAGMON-Z/neon-arch"><img src="assets/proj-neon-arch.svg" width="49%" alt="neon-arch"></a>
-<a href="https://github.com/DAGMON-Z/lunarchive"><img src="assets/proj-lunarchive.svg" width="49%" alt="lunarchive"></a>
+<a href="https://github.com/DAGMON-Z/neon-arch"><img src="assets/proj-neon-arch.svg?v=3ab74d109c" width="49%" alt="neon-arch"></a>
+<a href="https://github.com/DAGMON-Z/lunarchive"><img src="assets/proj-lunarchive.svg?v=9d7452fd88" width="49%" alt="lunarchive"></a>
 </p>
 <!-- projects:end -->
 
 ### 🏁 Competitive programming · 🛡️ Pentesting
 
-<p align="center"><img src="assets/stats.svg" width="100%" alt="Codeforces rating and next contest, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
+<p align="center"><img src="assets/stats.svg?v=8cccdfbe3d" width="100%" alt="Codeforces rating and next contest, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
 
 ### 📡 Live capture of my activity
 
-<p align="center"><img src="assets/capture.svg" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
+<p align="center"><img src="assets/capture.svg?v=0000af7bde" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
 
 ### 🚩 Profile CTF: port 31337 was filtered for a reason
 
-<p align="center"><img src="assets/ctf-hof.svg" width="100%" alt="CTF scoreboard"></p>
+<p align="center"><img src="assets/ctf-hof.svg?v=62823dbc55" width="100%" alt="CTF scoreboard"></p>
 
 <p align="center">Level 1 starts here:</p>
 
@@ -47,4 +47,4 @@ Then [open an issue](https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=flag%
 
 </details>
 
-<p align="center"><img src="assets/traceroute.svg" width="100%" alt="traceroute: github, codeforces, tryhackme, you are here"></p>
+<p align="center"><img src="assets/traceroute.svg?v=09863266f8" width="100%" alt="traceroute: github, codeforces, tryhackme, you are here"></p>
