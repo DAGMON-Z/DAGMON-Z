@@ -93,15 +93,20 @@ def num(v):
 def badge_card():
     lvl = stats.get("level")
     cx, cy = 24 + 42, BY + BH // 2
-    top = stats.get("topPercentage")
-    top = f" · top {top}%" if isinstance(top, (int, float)) else ""
+    # rank is a number (#98,321), or text like "Top 90%" for newer accounts
+    rank, top = stats.get("rank"), stats.get("topPercentage")
+    if isinstance(rank, str):
+        rank_txt, top = escape(rank.lower()), ""
+    else:
+        rank_txt = f"#{num(rank)}"
+        top = f" · top {top}%" if isinstance(top, (int, float)) else ""
     league = stats.get("leagueTier")
     league = f' <tspan fill="#565f89">· {escape(str(league).lower())} league</tspan>' if league else ""
     streak = stats.get("streak")
     streak = f"   🔥 {num(streak)}" if isinstance(streak, (int, float)) else ""
     rows = [
         (14.5, f'<tspan fill="#c0caf5" font-weight="bold">{escape(str(stats.get("username", user)))}</tspan>{league}'),
-        (13, f'<tspan fill="#e0af68">🏆 #{num(stats.get("rank"))}</tspan><tspan fill="#565f89">{top}</tspan>'),
+        (13, f'<tspan fill="#e0af68">🏆 {rank_txt}</tspan><tspan fill="#565f89">{top}</tspan>'),
         (13, f'🚪 {num(stats.get("completedRoomsNumber"))} rooms   🏅 {num(stats.get("badgesNumber"))}{streak}'),
     ]
     g = (f'<rect x="24" y="{BY}" width="{BW}" height="{BH}" rx="10" fill="#16161e" stroke="#9ece6a" stroke-opacity=".45"/>'
