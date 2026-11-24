@@ -1,5 +1,5 @@
 {
- "generated": 1795521414,
+ "generated": 1795522174,
  "projects": [
   {
    "name": "neon-arch",
@@ -62,14 +62,14 @@
   "stats": {
    "username": "DAGMON",
    "level": 2,
-   "rank": "Top 65%",
-   "topPercentage": 65,
+   "rank": "Top 60%",
+   "topPercentage": 60,
    "completedRoomsNumber": 6,
    "badgesNumber": 1,
-   "totalPoints": 224,
+   "totalPoints": 240,
    "leagueTier": "silver",
    "streak": 1,
-   "synced": 1795521391
+   "synced": 1795522151
   },
   "url": "https://tryhackme.com/p/DAGMON",
   "badge": "https://raw.githubusercontent.com/DAGMON-Z/DAGMON-Z/main/assets/thm-badge.png"
