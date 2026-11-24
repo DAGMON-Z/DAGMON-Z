@@ -4,14 +4,14 @@
   "privilege": "guest",
   "stats": {
     "username": "DAGMON",
-    "level": 1,
-    "rank": "Top 70%",
-    "topPercentage": 70,
+    "level": 2,
+    "rank": "Top 65%",
+    "topPercentage": 65,
     "completedRoomsNumber": 6,
     "badgesNumber": 1,
-    "totalPoints": 192,
+    "totalPoints": 208,
     "leagueTier": "silver",
     "streak": 1,
-    "synced": 1795514771
+    "synced": 1795518731
   }
 }
