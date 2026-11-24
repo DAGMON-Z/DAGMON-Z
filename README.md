@@ -17,7 +17,7 @@
 
 ### 🏁 Competitive programming · 🛡️ Pentesting
 
-<p align="center"><img src="assets/stats.svg?v=766dc7edfe" width="100%" alt="Codeforces rating and next contest, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
+<p align="center"><img src="assets/stats.svg?v=e4d4114fd8" width="100%" alt="Codeforces rating and next contest, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
 
 ### 📡 Live capture of my activity
 
