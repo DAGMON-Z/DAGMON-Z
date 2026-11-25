@@ -47,7 +47,7 @@ def cf(method):
 
 save("info.json", lambda: cf(f"user.info?handles={CF_HANDLE}"))
 save("rating.json", lambda: cf(f"user.rating?handle={CF_HANDLE}"))
-save("status.json", lambda: cf(f"user.status?handle={CF_HANDLE}&from=1&count=1000"))
+save("status.json", lambda: cf(f"user.status?handle={CF_HANDLE}"))  # all submissions, for the all-time solved count
 
 repos = save("repos.json", lambda: get(f"https://api.github.com/users/{GH_USER}/repos?per_page=100&sort=pushed", gh=True))
 for r in repos or []:

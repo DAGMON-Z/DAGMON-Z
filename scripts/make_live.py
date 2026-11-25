@@ -43,7 +43,7 @@ top = f'''<text x="24" y="36" class="t h">🏁 CODEFORCES · {escape(info["handl
 <text x="24" y="84" class="t" style="font-size:34px;font-weight:bold;fill:{rc}">{cur}</text>
 <text x="112" y="84" class="t" style="font-size:16px;fill:{rc}">{escape(rank.title())}</text>
 <text x="24" y="116" class="t" style="fill:#9ece6a">↗ +{gain} in {len(rating)} contests</text>
-<text x="24" y="142" class="t">max {mx} · {solved} solved · C++23</text>
+<text x="24" y="142" class="t">max {mx} · {solved} problems solved all time</text>
 <line x1="440" y1="24" x2="440" y2="152" stroke="#292e42"/>
 <line x1="{x0}" y1="{y0 + 14}" x2="{x1}" y2="{y0 + 14}" stroke="#292e42"/>
 <polyline class="line" fill="none" stroke="#7aa2f7" stroke-width="2.5" points="{poly}"/>{dots}{labels}

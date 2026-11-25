@@ -26,7 +26,7 @@ jobs:
         env:
           CTF_FLAGS: ${{ secrets.CTF_FLAGS }}
         run: |
-          BOT=scripts/ctf_bot.py; FILES="data/ctf-solves.json assets/ctf-hof.svg README.md"; TAG=ctf
+          BOT=scripts/ctf_bot.py; FILES="data/ctf-solves.json assets/ctf-hof.svg assets/v README.md"; TAG=ctf
           git config user.name  "dagmon-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4 5; do
