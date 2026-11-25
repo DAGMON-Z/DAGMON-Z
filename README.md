@@ -1,7 +1,7 @@
 <!-- This file is generated from README.tpl.md by .github/workflows/refresh.yml. Edit the template, not README.md. -->
 
 <p align="center">
-  <a href="https://dagmon-z.github.io/"><img src="assets/main.svg?v=adbc25368b" width="100%" alt="DAGMON OS boots, then a guest runs nmap against dagmon: competitive programmer, pentester in training, networking, Arch Linux"></a>
+  <a href="https://dagmon-z.github.io/"><img src="assets/v/main-adbc25368b.svg" width="100%" alt="DAGMON OS boots, then a guest runs nmap against dagmon: competitive programmer, pentester in training, networking, Arch Linux"></a>
 </p>
 
 <p align="center"><a href="https://dagmon-z.github.io/"><b>⌨️ Type in my terminal →</b></a></p>
@@ -10,22 +10,22 @@
 
 <!-- projects:start -->
 <p align="center">
-<a href="https://github.com/DAGMON-Z/profile-sync"><img src="assets/proj-profile-sync.svg?v=c5d3b297bb" width="49%" alt="profile-sync"></a>
-<a href="https://github.com/DAGMON-Z/airlock"><img src="assets/proj-airlock.svg?v=2672c8430a" width="49%" alt="airlock"></a>
+<a href="https://github.com/DAGMON-Z/profile-sync"><img src="assets/v/proj-profile-sync-c5d3b297bb.svg" width="49%" alt="profile-sync"></a>
+<a href="https://github.com/DAGMON-Z/airlock"><img src="assets/v/proj-airlock-2672c8430a.svg" width="49%" alt="airlock"></a>
 </p>
 <!-- projects:end -->
 
 ### 🏁 Competitive programming · 🛡️ Pentesting
 
-<p align="center"><img src="assets/stats.svg?v=f3a16be806" width="100%" alt="Codeforces rating and next contest, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
+<p align="center"><img src="assets/v/stats-eb0010ac3b.svg" width="100%" alt="Codeforces rating, rating history and all-time solved problems, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
 
 ### 📡 Live capture of my activity
 
-<p align="center"><img src="assets/capture.svg?v=81574f89d6" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
+<p align="center"><img src="assets/v/capture-ae0940b54e.svg" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
 
 ### 🚩 Profile CTF: port 31337 was filtered for a reason
 
-<p align="center"><img src="assets/ctf-hof.svg?v=62823dbc55" width="100%" alt="CTF scoreboard"></p>
+<p align="center"><img src="assets/v/ctf-hof-62823dbc55.svg" width="100%" alt="CTF scoreboard"></p>
 
 <p align="center">Level 1 starts here:</p>
 
@@ -47,4 +47,4 @@ Then [open an issue](https://github.com/DAGMON-Z/DAGMON-Z/issues/new?title=flag%
 
 </details>
 
-<p align="center"><img src="assets/traceroute.svg?v=09863266f8" width="100%" alt="traceroute: github, codeforces, tryhackme, you are here"></p>
+<p align="center"><img src="assets/v/traceroute-09863266f8.svg" width="100%" alt="traceroute: github, codeforces, tryhackme, you are here"></p>
