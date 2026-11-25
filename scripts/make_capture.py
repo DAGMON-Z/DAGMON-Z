@@ -43,31 +43,24 @@ for e in events:
     elif e["type"] == "ReleaseEvent":
         rows.append((t, ME, repo, "RELEASE", "#bb9af7", p.get("release", {}).get("tag_name", "")))
 
-VER = {"OK": ("Accepted", "#9ece6a"), "WRONG_ANSWER": ("Wrong answer", "#f7768e"),
-       "TIME_LIMIT_EXCEEDED": ("TLE", "#e0af68"), "RUNTIME_ERROR": ("Runtime error", "#bb9af7")}
-for s in subs[:10]:
-    v, col = VER.get(s.get("verdict"), (str(s.get("verdict", "")).replace("_", " ").title(), "#a9b1d6"))
+# Codeforces: every problem solved (contest or practice), once, at its first
+# accepted submission. Newest first; the 8 newest are shown, plus a count.
+solved = {}
+for s in subs:
+    if s.get("verdict") != "OK":
+        continue
     pr = s["problem"]
-    rows.append((datetime.fromtimestamp(s["creationTimeSeconds"], timezone.utc), ME, "codeforces",
-                 "SUBMIT", "#bb9af7", f'{pr.get("contestId", "")}{pr["index"]} · {v}'))
-
-# Keep it short (6 packets) but fair: the newest event from each source is always included,
-# then the rest are the newest overall. Shown oldest -> newest, like a real capture.
-rows.sort(key=lambda r: r[0], reverse=True)
-pick = []
-for dest in ("codeforces",):
-    r = next((r for r in rows if r[2] == dest), None)
-    if r:
-        pick.append(r)
-gh = next((r for r in rows if r[2] != "codeforces"), None)
-if gh:
-    pick.append(gh)
-for r in rows:
-    if len(pick) >= 6:
-        break
-    if r not in pick:
-        pick.append(r)
-rows = sorted(pick, key=lambda r: r[0])
+    key = (pr.get("contestId"), pr["index"])
+    t = datetime.fromtimestamp(s["creationTimeSeconds"], timezone.utc)
+    if key not in solved or t < solved[key][0]:
+        kind = "contest" if s["author"].get("participantType") == "CONTESTANT" else "practice"
+        solved[key] = (t, f'{pr.get("contestId", "")}{pr["index"]} {pr.get("name", "")}'[:30] + f" · {kind}")
+cf_rows = sorted(((t, ME, "codeforces", "SOLVED", "#9ece6a", info) for t, info in solved.values()),
+                 key=lambda r: r[0], reverse=True)
+CF_SHOW, GH_SHOW = 8, 4
+more = max(0, len(cf_rows) - CF_SHOW)
+gh_rows = sorted(rows, key=lambda r: r[0], reverse=True)[:GH_SHOW]
+rows = sorted(cf_rows[:CF_SHOW] + gh_rows, key=lambda r: r[0])
 
 
 def ago(t):
@@ -83,8 +76,10 @@ lines = ['<tspan fill="#7aa2f7">No.  Age         Source    Destination    Proto 
 for i, (t, s_, d, proto, col, info) in enumerate(rows, 1):
     lines.append(f'{i:<4} {ago(t):<11} {escape(s_[:9]):<9} {escape(d[:14]):<14} '
                  f'<tspan fill="{col}">{proto:<8}</tspan> {escape(info)}')
+if more:
+    lines.append(f'<tspan fill="#565f89">     … and {more} more solved on Codeforces ({len(cf_rows)} in all)</tspan>')
 lines.append(f'{len(rows) + 1:<4} {"now":<11} you       DAGMON         <tspan fill="#7aa2f7">HTTP    </tspan> GET /profile 200 OK  <tspan fill="#565f89">← that\'s you</tspan>')
-lines += ["", '<tspan fill="#565f89">real GitHub + Codeforces activity · refreshed automatically</tspan>']
+lines += ["", '<tspan fill="#565f89">real GitHub activity + every Codeforces problem I solve · refreshed automatically</tspan>']
 
 h = 80 + 24 * len(lines)
 body = "".join(f'<text x="24" y="{62 + i * 24}" class="t l" style="animation-delay:{0.3 + i * 0.3:.1f}s">{ln}</text>'
