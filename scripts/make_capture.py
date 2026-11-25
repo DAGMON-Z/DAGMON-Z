@@ -1,4 +1,4 @@
-"""Wireshark-style capture of my 10 newest activities: GitHub, TryHackMe progress, Codeforces solves.
+"""Wireshark-style capture of my 10 newest activities: TryHackMe progress and Codeforces solves.
 
 Usage: python3 make_capture.py <cache_dir> <out_dir>
 """
@@ -79,7 +79,9 @@ for r in rows:
     deduped.append(r)
 rows = deduped
 
-# The 10 newest packets of everything (GitHub, TryHackMe, Codeforces), oldest first
+# The 10 newest packets of TryHackMe progress and Codeforces solves, oldest first
+# (GitHub pushes are left out: the projects above already show that work)
+rows = [r for r in rows if r[2] == "tryhackme"]
 rows = sorted(sorted(cf_rows + rows, key=lambda r: r[0], reverse=True)[:10], key=lambda r: r[0])
 
 
@@ -96,8 +98,7 @@ lines = ['<tspan fill="#7aa2f7">No.  Age         Source    Destination    Proto 
 for i, (t, s_, d, proto, col, info) in enumerate(rows, 1):
     lines.append(f'{i:<4} {ago(t):<11} {escape(s_[:9]):<9} {escape(d[:14]):<14} '
                  f'<tspan fill="{col}">{proto:<8}</tspan> {escape(info)}')
-lines.append(f'{len(rows) + 1:<4} {"now":<11} you       DAGMON         <tspan fill="#7aa2f7">HTTP    </tspan> GET /profile 200 OK  <tspan fill="#565f89">← that\'s you</tspan>')
-lines += ["", '<tspan fill="#565f89">my 10 newest: GitHub, TryHackMe and every Codeforces problem I solve · refreshed automatically</tspan>']
+lines += ["", '<tspan fill="#565f89">my 10 newest: TryHackMe progress and every Codeforces problem I solve · refreshed automatically</tspan>']
 
 h = 80 + 24 * len(lines)
 body = "".join(f'<text x="24" y="{62 + i * 24}" class="t l" style="animation-delay:{0.3 + i * 0.3:.1f}s">{ln}</text>'

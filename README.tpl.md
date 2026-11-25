@@ -6,7 +6,7 @@
 
 <p align="center"><a href="https://dagmon-z.github.io/"><b>⌨️ Type in my terminal →</b></a></p>
 
-### 📁 ~/projects
+### 📁 ~/newest-projects
 
 {{PROJECTS}}
 
