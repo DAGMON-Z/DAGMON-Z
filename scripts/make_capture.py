@@ -73,7 +73,7 @@ import re
 import subprocess
 
 HIDE = {"level"}                       # never shown
-HIDE_PER_SITE = {"codeforces": {"solved", "contribution", "maxRank", "maxRating"}, "tryhackme": {"points", "badges", "streak"}}  # solved problems already appear by name
+HIDE_PER_SITE = {"codeforces": {"solved", "contribution", "maxRank", "maxRating"}, "tryhackme": {"points", "badges", "streak", "league"}}  # solved problems already appear by name
 
 
 def git(*args):
