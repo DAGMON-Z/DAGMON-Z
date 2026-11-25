@@ -1,5 +1,5 @@
 {
- "generated": 1795629232,
+ "generated": 1795636041,
  "projects": [
   {
    "name": "profile-sync",
@@ -61,11 +61,7 @@
    600,
    770
   ],
-  "solved": 7,
-  "next": {
-   "name": "Codeforces Round 1138 (Div. 3)",
-   "start": 1795790100
-  }
+  "solved": 7
  },
  "thm": {
   "user": "DAGMON",

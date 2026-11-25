@@ -12,7 +12,6 @@
 <text x="112" y="84" class="t" style="font-size:16px;fill:#a9b1d6">Newbie</text>
 <text x="24" y="116" class="t" style="fill:#9ece6a">↗ +405 in 3 contests</text>
 <text x="24" y="142" class="t">max 770 · 7 solved · C++23</text>
-<text x="24" y="176" class="t" style="font-size:12px;fill:#e0af68">⏱ next round in 1 days · Codeforces Round 1138 (Div. 3)</text>
 <line x1="440" y1="24" x2="440" y2="176" stroke="#292e42"/>
 <line x1="470" y1="174" x2="830" y2="174" stroke="#292e42"/>
 <polyline class="line" fill="none" stroke="#7aa2f7" stroke-width="2.5" points="470,160 650,96 830,50"/><circle cx="470" cy="160" r="4" fill="#a9b1d6"/><circle cx="650" cy="96" r="4" fill="#a9b1d6"/><circle cx="830" cy="50" r="4" fill="#a9b1d6"/><text x="470" y="148" text-anchor="middle" class="t" style="font-size:11px;fill:#565f89">365</text><text x="650" y="84" text-anchor="middle" class="t" style="font-size:11px;fill:#565f89">600</text><text x="830" y="38" text-anchor="middle" class="t" style="font-size:11px;fill:#565f89">770</text>
