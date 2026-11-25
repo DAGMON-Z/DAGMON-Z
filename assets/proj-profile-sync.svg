@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="230" viewBox="0 0 420 230">
+<style>.t { font:14px 'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace; fill:#c0caf5; white-space:pre; }</style>
+<rect x=".5" y=".5" width="419" height="229" rx="12" fill="#1a1b26" stroke="#292e42"/>
+<rect x="0" y="0" width="5" height="230" rx="2" fill="#7aa2f7"/>
+<text x="22" y="34" class="t" style="font-size:12px;fill:#565f89">❯ cat ~/projects/profile-sync/README.md</text>
+<text x="22" y="66" class="t" style="font-size:20px;font-weight:bold;fill:#7aa2f7">profile-sync</text>
+<text x="22" y="96" class="t" style="font-size:13px">Browser extension: your TryHackMe, LeetCode,</text><text x="22" y="118" class="t" style="font-size:13px">Codeforces (and any site's) stats, synced to</text><text x="22" y="140" class="t" style="font-size:13px">GitHub, webhooks and Discord.</text><rect x="22" y="166" width="96" height="22" rx="11" fill="none" stroke="#7aa2f7" stroke-opacity=".5"/><text x="70.0" y="181" text-anchor="middle" class="t" style="font-size:12px;fill:#7aa2f7">JavaScript</text><rect x="126" y="166" width="48" height="22" rx="11" fill="none" stroke="#7aa2f7" stroke-opacity=".5"/><text x="150.0" y="181" text-anchor="middle" class="t" style="font-size:12px;fill:#7aa2f7">HTML</text><rect x="182" y="166" width="40" height="22" rx="11" fill="none" stroke="#7aa2f7" stroke-opacity=".5"/><text x="202.0" y="181" text-anchor="middle" class="t" style="font-size:12px;fill:#7aa2f7">CSS</text>
+<text x="22" y="214" class="t" style="font-size:12px;fill:#565f89">→ open repo</text>
+</svg>

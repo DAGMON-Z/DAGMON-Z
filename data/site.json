@@ -1,6 +1,18 @@
 {
- "generated": 1795607221,
+ "generated": 1795629232,
  "projects": [
+  {
+   "name": "profile-sync",
+   "desc": "Browser extension: your TryHackMe, LeetCode, Codeforces (and any site's) stats, synced to GitHub, webhooks and Discord.",
+   "url": "https://github.com/DAGMON-Z/profile-sync",
+   "homepage": "",
+   "stars": 0,
+   "langs": [
+    "JavaScript",
+    "HTML",
+    "CSS"
+   ]
+  },
   {
    "name": "neon-arch",
    "desc": "Neon Arch: a beginner-friendly Arch Linux + Hyprland setup with a Tokyo Night theme, one-command install, and a competitive programming workflow in Neovim.",
@@ -62,14 +74,14 @@
   "stats": {
    "username": "DAGMON",
    "level": 2,
-   "rank": "Top 50%",
-   "topPercentage": 50,
-   "completedRoomsNumber": 9,
+   "rank": "Top 45%",
+   "topPercentage": 45,
+   "completedRoomsNumber": 10,
    "badgesNumber": 1,
-   "totalPoints": 368,
+   "totalPoints": 466,
    "leagueTier": "silver",
-   "streak": 1,
-   "synced": 1795542772
+   "streak": 2,
+   "synced": 1795629084
   },
   "url": "https://tryhackme.com/p/DAGMON",
   "badge": "https://raw.githubusercontent.com/DAGMON-Z/DAGMON-Z/main/assets/thm-badge.png"
