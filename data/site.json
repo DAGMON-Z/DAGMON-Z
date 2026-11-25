@@ -1,18 +1,6 @@
 {
- "generated": 1795642754,
+ "generated": 1795643037,
  "projects": [
-  {
-   "name": "neon-arch",
-   "desc": "Neon Arch: a beginner-friendly Arch Linux + Hyprland setup with a Tokyo Night theme, one-command install, and a competitive programming workflow in Neovim.",
-   "url": "https://github.com/DAGMON-Z/neon-arch",
-   "homepage": "",
-   "stars": 0,
-   "langs": [
-    "Shell",
-    "Lua",
-    "Python"
-   ]
-  },
   {
    "name": "profile-sync",
    "desc": "Browser extension: your TryHackMe, LeetCode, Codeforces (and any site's) stats, synced to GitHub, webhooks and Discord.",
@@ -23,6 +11,18 @@
     "JavaScript",
     "HTML",
     "CSS"
+   ]
+  },
+  {
+   "name": "neon-arch",
+   "desc": "Neon Arch: a beginner-friendly Arch Linux + Hyprland setup with a Tokyo Night theme, one-command install, and a competitive programming workflow in Neovim.",
+   "url": "https://github.com/DAGMON-Z/neon-arch",
+   "homepage": "",
+   "stars": 0,
+   "langs": [
+    "Shell",
+    "Lua",
+    "Python"
    ]
   },
   {
