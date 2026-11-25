@@ -10,6 +10,7 @@ import sys
 import time
 from pathlib import Path
 from xml.sax.saxutils import escape
+import thm_stats
 
 src, out = Path(sys.argv[1]), Path(sys.argv[2])
 info = json.loads((src / "info.json").read_text())["result"][0]
@@ -81,9 +82,9 @@ for step in LADDER:
 TOP_H = 204                 # height of the Codeforces block
 BW, BH = 374, 87            # badge drawn at 1.5x (249x58 source)
 BY = TOP_H + 52
-# Synced stats (tools/thm-sync): drawn here, so they're always current.
-# Without them, the official badge PNG above is shown instead.
-stats = cfg.get("stats") or {}
+# Stats from the Profile Sync extension (profile-sync/tryhackme-<user>.json),
+# drawn here, so they're always current. Without them, the badge PNG is shown.
+stats = thm_stats.load(user)
 
 
 def num(v):

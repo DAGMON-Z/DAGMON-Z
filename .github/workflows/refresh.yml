@@ -6,11 +6,12 @@ on:
     - cron: "*/5 * * * *"
   # "Run workflow" button on the Actions tab: refresh right now, on demand.
   workflow_dispatch:
-  # Editing data/htb.json, the template or the scripts rebuilds immediately.
+  # New stats from the Profile Sync extension, data/, the template or the scripts rebuild immediately.
   push:
     branches: [main]
     paths:
       - "data/**"
+      - "profile-sync/**"
       - "scripts/**"
       - "README.tpl.md"
       - ".github/workflows/refresh.yml"

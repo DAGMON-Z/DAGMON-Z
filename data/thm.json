@@ -1,17 +1,5 @@
 {
   "user": "DAGMON",
   "path": "Red Teamer",
-  "privilege": "guest",
-  "stats": {
-    "username": "DAGMON",
-    "level": 2,
-    "rank": "Top 50%",
-    "topPercentage": 50,
-    "completedRoomsNumber": 9,
-    "badgesNumber": 1,
-    "totalPoints": 368,
-    "leagueTier": "silver",
-    "streak": 1,
-    "synced": 1795542772
-  }
+  "privilege": "guest"
 }
