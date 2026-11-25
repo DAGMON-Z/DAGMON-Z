@@ -13,5 +13,21 @@
       "solved": 7
     },
     "syncedAt": "2026-11-25T17:36:06.259Z"
+  },
+  {
+    "id": "tryhackme-dagmon",
+    "site": "TryHackMe",
+    "title": "DAGMON",
+    "url": "https://tryhackme.com/p/DAGMON",
+    "stats": {
+      "badges": 1,
+      "league": "silver",
+      "level": 2,
+      "points": 466,
+      "rank": "Top 45%",
+      "rooms": 10,
+      "streak": 2
+    },
+    "syncedAt": "2026-11-25T17:51:24.597Z"
   }
 ]
