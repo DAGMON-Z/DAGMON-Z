@@ -1,4 +1,4 @@
-"""Wireshark-style capture of real recent activity (GitHub events + Codeforces submissions).
+"""Wireshark-style capture of my 10 newest activities: GitHub, TryHackMe progress, Codeforces solves.
 
 Usage: python3 make_capture.py <cache_dir> <out_dir>
 """
@@ -33,7 +33,18 @@ for e in events:
     t, p = ts(e["created_at"]), e["payload"]
     if e["type"] == "PushEvent":
         m = msgs.get(p.get("head"), "")
-        rows.append((t, ME, repo, "PUSH", "#9ece6a", f'"{m.splitlines()[0][:38]}"' if m else "new commits"))
+        first = m.splitlines()[0] if m else ""
+        low = first.lower()
+        # Stats commits (Profile Sync extension, or the old thm-sync helper) are
+        # really TryHackMe / Codeforces activity, not work on the repo
+        if low.startswith(("tryhackme:", "thm:")):
+            info = first.split(":", 1)[1].strip()
+            info = info.removeprefix(ME + ",").strip()  # "DAGMON, level 3" -> "level 3"
+            rows.append((t, ME, "tryhackme", "PROGRESS", "#f7768e", info[:44]))
+        elif low.startswith("codeforces:"):
+            continue  # already shown as solved problems
+        else:
+            rows.append((t, ME, repo, "PUSH", "#9ece6a", f'"{first[:38]}"' if first else "new commits"))
     elif e["type"] == "CreateEvent" and p.get("ref_type") == "repository":
         rows.append((t, ME, repo, "CREATE", "#7dcfff", "new repository"))
     elif e["type"] == "WatchEvent":
@@ -57,10 +68,19 @@ for s in subs:
         solved[key] = (t, f'{pr.get("contestId", "")}{pr["index"]} {pr.get("name", "")}'[:30] + f" · {kind}")
 cf_rows = sorted(((t, ME, "codeforces", "SOLVED", "#9ece6a", info) for t, info in solved.values()),
                  key=lambda r: r[0], reverse=True)
-CF_SHOW, GH_SHOW = 8, 4
-more = max(0, len(cf_rows) - CF_SHOW)
-gh_rows = sorted(rows, key=lambda r: r[0], reverse=True)[:GH_SHOW]
-rows = sorted(cf_rows[:CF_SHOW] + gh_rows, key=lambda r: r[0])
+# Repeated TryHackMe syncs with the same stats aren't progress: keep the first
+rows.sort(key=lambda r: r[0])
+deduped, last_thm = [], None
+for r in rows:
+    if r[2] == "tryhackme":
+        if r[5] == last_thm:
+            continue
+        last_thm = r[5]
+    deduped.append(r)
+rows = deduped
+
+# The 10 newest packets of everything (GitHub, TryHackMe, Codeforces), oldest first
+rows = sorted(sorted(cf_rows + rows, key=lambda r: r[0], reverse=True)[:10], key=lambda r: r[0])
 
 
 def ago(t):
@@ -76,10 +96,8 @@ lines = ['<tspan fill="#7aa2f7">No.  Age         Source    Destination    Proto 
 for i, (t, s_, d, proto, col, info) in enumerate(rows, 1):
     lines.append(f'{i:<4} {ago(t):<11} {escape(s_[:9]):<9} {escape(d[:14]):<14} '
                  f'<tspan fill="{col}">{proto:<8}</tspan> {escape(info)}')
-if more:
-    lines.append(f'<tspan fill="#565f89">     … and {more} more solved on Codeforces ({len(cf_rows)} in all)</tspan>')
 lines.append(f'{len(rows) + 1:<4} {"now":<11} you       DAGMON         <tspan fill="#7aa2f7">HTTP    </tspan> GET /profile 200 OK  <tspan fill="#565f89">← that\'s you</tspan>')
-lines += ["", '<tspan fill="#565f89">real GitHub activity + every Codeforces problem I solve · refreshed automatically</tspan>']
+lines += ["", '<tspan fill="#565f89">my 10 newest: GitHub, TryHackMe and every Codeforces problem I solve · refreshed automatically</tspan>']
 
 h = 80 + 24 * len(lines)
 body = "".join(f'<text x="24" y="{62 + i * 24}" class="t l" style="animation-delay:{0.3 + i * 0.3:.1f}s">{ln}</text>'

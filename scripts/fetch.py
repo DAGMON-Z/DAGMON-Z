@@ -54,10 +54,10 @@ for r in repos or []:
     save(f"lang-{r['name']}.json", lambda r=r: get(r["languages_url"], gh=True))
 
 events = save("events.json", lambda: get(f"https://api.github.com/users/{GH_USER}/events/public?per_page=30", gh=True))
-# Push events no longer carry commit messages: look up the head commit of the latest few pushes.
+# Push events no longer carry commit messages: look up the head commit of the latest 15 pushes (enough for the 10 shown).
 msgs = {}
 pushes = sorted((e for e in (events or []) if e["type"] == "PushEvent"), key=lambda e: e["created_at"], reverse=True)
-for e in pushes[:8]:
+for e in pushes[:15]:
     head = e["payload"].get("head")
     try:
         msgs[head] = get(f"https://api.github.com/repos/{e['repo']['name']}/commits/{head}", gh=True)["commit"]["message"]
