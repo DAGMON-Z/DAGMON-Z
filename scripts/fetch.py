@@ -4,6 +4,8 @@ Each source is fetched independently; if one fails, its old cache (if any) is ke
 build carries on, so a flaky API never breaks the profile.
 """
 import json
+import re
+import base64
 import os
 import sys
 import time
@@ -64,6 +66,34 @@ for e in pushes[:15]:
     except Exception as ex:
         print(f"warn: commit {head}: {ex}", file=sys.stderr)
 (CACHE / "commit-msgs.json").write_text(json.dumps(msgs), encoding="utf-8")
+
+# TryHackMe progress, from the history of the stats files in this repo (exact
+# and up to the minute, unlike the activity feed, which lags):
+#  - profile-sync/tryhackme-dagmon.json: written by the Profile Sync extension;
+#    each version's stats are read from the file itself
+#  - data/thm.json (older): written by the old thm-sync helper, "thm: ..." messages
+def thm_history():
+    out = []
+    api = f"https://api.github.com/repos/{GH_USER}/{GH_USER}"
+    path = "profile-sync/tryhackme-dagmon.json"
+    for c in get(f"{api}/commits?path={path}&per_page=12", gh=True):
+        try:
+            f = get(f"{api}/contents/{path}?ref={c['sha']}", gh=True)
+            st = json.loads(base64.b64decode(f["content"])).get("stats", {})
+        except Exception as ex:
+            print(f"warn: thm history {c['sha'][:7]}: {ex}", file=sys.stderr)
+            continue
+        out.append({"time": c["commit"]["author"]["date"], "level": st.get("level"),
+                    "rooms": st.get("rooms"), "rank": st.get("rank")})
+    for c in get(f"{api}/commits?path=data/thm.json&per_page=20", gh=True):
+        m = re.match(r"thm: (\d+) rooms, rank (.+)", c["commit"]["message"].splitlines()[0])
+        if m:
+            out.append({"time": c["commit"]["author"]["date"], "level": None,
+                        "rooms": int(m.group(1)), "rank": m.group(2)})
+    return out
+
+
+save("thm-history.json", thm_history)
 print("fetch done")
 
 # ---- TryHackMe: the official public badge image (tryhackme.com/p/DAGMON). Its JSON API sits behind a

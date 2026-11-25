@@ -37,12 +37,8 @@ for e in events:
         low = first.lower()
         # Stats commits (Profile Sync extension, or the old thm-sync helper) are
         # really TryHackMe / Codeforces activity, not work on the repo
-        if low.startswith(("tryhackme:", "thm:")):
-            info = first.split(":", 1)[1].strip()
-            info = info.removeprefix(ME + ",").strip()  # "DAGMON, level 3" -> "level 3"
-            rows.append((t, ME, "tryhackme", "PROGRESS", "#f7768e", info[:44]))
-        elif low.startswith("codeforces:"):
-            continue  # already shown as solved problems
+        if low.startswith(("tryhackme:", "thm:", "codeforces:")):
+            continue  # stats commits: shown from their own sources below
         else:
             rows.append((t, ME, repo, "PUSH", "#9ece6a", f'"{first[:38]}"' if first else "new commits"))
     elif e["type"] == "CreateEvent" and p.get("ref_type") == "repository":
@@ -68,6 +64,11 @@ for s in subs:
         solved[key] = (t, f'{pr.get("contestId", "")}{pr["index"]} {pr.get("name", "")}'[:30] + f" · {kind}")
 cf_rows = sorted(((t, ME, "codeforces", "SOLVED", "#9ece6a", info) for t, info in solved.values()),
                  key=lambda r: r[0], reverse=True)
+# TryHackMe progress, from the stats files' history in the repo (see fetch.py)
+for h in load("thm-history.json", []):
+    info = f'{h["rooms"]} rooms, rank {h["rank"]}' + (f', level {h["level"]}' if h.get("level") else "")
+    rows.append((ts(h["time"]), ME, "tryhackme", "PROGRESS", "#f7768e", info[:44]))
+
 # Repeated TryHackMe syncs with the same stats aren't progress: keep the first
 rows.sort(key=lambda r: r[0])
 deduped, last_thm = [], None
