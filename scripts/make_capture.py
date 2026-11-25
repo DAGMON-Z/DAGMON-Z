@@ -1,10 +1,10 @@
-"""Wireshark-style capture of my 10 newest activities: TryHackMe progress and Codeforces solves.
+"""Wireshark-style capture of my 10 newest activities: progress on every site the extension tracks, and Codeforces solves.
 
 Usage: python3 make_capture.py <cache_dir> <out_dir>
 """
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -64,25 +64,112 @@ for s in subs:
         solved[key] = (t, f'{pr.get("contestId", "")}{pr["index"]} {pr.get("name", "")}'[:30] + f" · {kind}")
 cf_rows = sorted(((t, ME, "codeforces", "SOLVED", "#9ece6a", info) for t, info in solved.values()),
                  key=lambda r: r[0], reverse=True)
-# TryHackMe progress, from the stats files' history in the repo (see fetch.py)
-for h in load("thm-history.json", []):
-    info = f'{h["rooms"]} rooms, rank {h["rank"]}' + (f', level {h["level"]}' if h.get("level") else "")
-    rows.append((ts(h["time"]), ME, "tryhackme", "PROGRESS", "#f7768e", info[:44]))
+# Progress on every site the Profile Sync extension tracks, read from the git
+# history of its files (profile-sync/<site>-<user>.json): each saved version is
+# compared with the one before, and what changed becomes a packet. Instant, and
+# no API calls. Older TryHackMe history (data/thm.json, "thm: ..." commits from
+# the old helper) is read the same way.
+import re
+import subprocess
 
-# Repeated TryHackMe syncs with the same stats aren't progress: keep the first
-rows.sort(key=lambda r: r[0])
-deduped, last_thm = [], None
-for r in rows:
-    if r[2] == "tryhackme":
-        if r[5] == last_thm:
+HIDE = {"level"}                       # never shown
+HIDE_PER_SITE = {"codeforces": {"solved"}}  # solved problems already appear by name
+
+
+def git(*args):
+    r = subprocess.run(["git", *args], capture_output=True, text=True)
+    return r.stdout if r.returncode == 0 else ""
+
+
+def label_of(key, fields):
+    for f in fields or []:
+        if f.get("key") == key:
+            return f.get("label") or key
+    return re.sub(r"(?<!^)(?=[A-Z])", " ", key).lower()  # maxRating -> max rating
+
+
+# Most telling numbers first (used when a file doesn't list its own order)
+PRIORITY = ["rank", "rating", "rooms", "solved", "points", "streak", "badges", "league",
+            "ranking", "contestRating", "honor", "position", "completed", "stars"]
+WIDTH = 46  # characters that fit in the Info column
+
+
+def ordered(stats, fields):
+    if fields:
+        return [f["key"] for f in fields]
+    return sorted(stats, key=lambda k: PRIORITY.index(k) if k in PRIORITY else len(PRIORITY))
+
+
+def fit(parts):
+    out = ""
+    for p in parts:
+        nxt = f"{out}, {p}" if out else p
+        if len(nxt) > WIDTH:
+            break
+        out = nxt
+    return out or parts[0][:WIDTH]
+
+
+def show(v):
+    return f"{v:,}" if isinstance(v, (int, float)) and not isinstance(v, bool) else str(v)
+
+
+progress = []
+for path in sorted(Path("profile-sync").glob("*.json")):
+    if path.name == "all.json":
+        continue
+    versions = []  # oldest first
+    for line in reversed(git("log", "--format=%H %cI", "--", str(path)).split("\n")):
+        if not line.strip():
             continue
-        last_thm = r[5]
+        sha, when = line.split()
+        try:
+            versions.append((datetime.fromisoformat(when), json.loads(git("show", f"{sha}:{path}"))))
+        except ValueError:
+            continue
+    prev = {}
+    for i, (when, doc) in enumerate(versions):
+        when += timedelta(microseconds=i)  # same-second saves keep their order
+        stats, fields = doc.get("stats") or {}, doc.get("fields")
+        site = str(doc.get("site", path.stem.split("-")[0]))
+        hide = HIDE | HIDE_PER_SITE.get(site.lower(), set())
+        order = ordered(stats, fields)
+        changed = [k for k in order if k in stats and k not in hide and stats[k] != prev.get(k)]
+        if prev and changed:
+            info = fit([f"{label_of(k, fields)} {show(prev.get(k, '?'))} → {show(stats[k])}" for k in changed])
+        elif not prev:
+            shown = [k for k in order if k in stats and k not in hide]
+            info = fit([f"{label_of(k, fields)} {show(stats[k])}" for k in shown]) if shown else ""
+        else:
+            info = ""
+        if info:
+            dest = re.sub(r"[^a-z0-9.-]", "", site.lower()) or path.stem
+            dest = re.sub(r"\.[a-z]{2,}$", "", dest)[:14]  # ctf-league.example -> ctf-league
+            progress.append((when, ME, dest, "PROGRESS", "#f7768e", info))
+        prev = stats
+
+# Old TryHackMe helper: "thm: 8 rooms, rank Top 50%" commits on data/thm.json
+for line in git("log", "--format=%cI %s", "--", "data/thm.json").split("\n"):
+    m = re.match(r"(\S+) thm: (\d+) rooms, rank (.+)", line)
+    if m:
+        progress.append((datetime.fromisoformat(m.group(1)), ME, "tryhackme", "PROGRESS", "#f7768e",
+                         f"rank {m.group(3)}, rooms {m.group(2)}"))
+rows += progress
+
+# Repeated syncs with the same stats aren't progress: keep the first
+rows.sort(key=lambda r: r[0])
+deduped, last = [], {}
+for r in rows:
+    if r[3] == "PROGRESS":
+        if last.get(r[2]) == r[5]:
+            continue
+        last[r[2]] = r[5]
     deduped.append(r)
 rows = deduped
 
-# The 10 newest packets of TryHackMe progress and Codeforces solves, newest first
+# The 10 newest packets: progress on any tracked site, and Codeforces solves, newest first
 # (GitHub pushes are left out: the projects above already show that work)
-rows = [r for r in rows if r[2] == "tryhackme"]
+rows = [r for r in rows if r[3] in ("PROGRESS", "SOLVED")]
 rows = sorted(cf_rows + rows, key=lambda r: r[0], reverse=True)[:10]
 
 
