@@ -98,7 +98,6 @@ lines = ['<tspan fill="#7aa2f7">No.  Age         Source    Destination    Proto 
 for i, (t, s_, d, proto, col, info) in enumerate(rows, 1):
     lines.append(f'{i:<4} {ago(t):<11} {escape(s_[:9]):<9} {escape(d[:14]):<14} '
                  f'<tspan fill="{col}">{proto:<8}</tspan> {escape(info)}')
-lines += ["", '<tspan fill="#565f89">my 10 newest: TryHackMe progress and every Codeforces problem I solve · refreshed automatically</tspan>']
 
 h = 80 + 24 * len(lines)
 body = "".join(f'<text x="24" y="{62 + i * 24}" class="t l" style="animation-delay:{0.3 + i * 0.3:.1f}s">{ln}</text>'
