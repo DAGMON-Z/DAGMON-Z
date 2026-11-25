@@ -73,7 +73,7 @@ import re
 import subprocess
 
 HIDE = {"level"}                       # never shown
-HIDE_PER_SITE = {"codeforces": {"solved"}}  # solved problems already appear by name
+HIDE_PER_SITE = {"codeforces": {"solved", "contribution"}}  # solved problems already appear by name
 
 
 def git(*args):
@@ -136,7 +136,7 @@ for path in sorted(Path("profile-sync").glob("*.json")):
         order = ordered(stats, fields)
         changed = [k for k in order if k in stats and k not in hide and stats[k] != prev.get(k)]
         if prev and changed:
-            info = fit([f"{label_of(k, fields)} {show(prev.get(k, '?'))} → {show(stats[k])}" for k in changed])
+            info = fit([f"{label_of(k, fields)} {show(stats[k])}" for k in changed])  # new values only
         elif not prev:
             shown = [k for k in order if k in stats and k not in hide]
             info = fit([f"{label_of(k, fields)} {show(stats[k])}" for k in shown]) if shown else ""
