@@ -16,7 +16,6 @@ src, out = Path(sys.argv[1]), Path(sys.argv[2])
 info = json.loads((src / "info.json").read_text())["result"][0]
 rating = json.loads((src / "rating.json").read_text())["result"]
 subs = json.loads((src / "status.json").read_text())["result"]
-contests = json.loads((src / "contests.json").read_text())["result"]
 
 FONT = "'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace"
 W = 860
@@ -40,20 +39,11 @@ dots = "".join(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="4" fill="{rc}"/>' for x, y
 labels = "".join(f'<text x="{x:.0f}" y="{y - 12:.0f}" text-anchor="middle" class="t" style="font-size:11px;fill:#565f89">{p}</text>'
                  for (x, y), p in zip(coords, pts))
 
-_up = sorted((x for x in contests if x["phase"] == "BEFORE"), key=lambda x: x["startTimeSeconds"])
-if _up:
-    _d = int(_up[0]["startTimeSeconds"] - time.time())
-    _when = f"{_d // 86400} days" if _d >= 86400 else (f"{_d // 3600}h" if _d >= 3600 else "under 1h")
-    next_line = f'next round in {_when} · {escape(_up[0]["name"][:34])}'
-else:
-    next_line = "no upcoming rounds"
-
 top = f'''<text x="24" y="36" class="t h">🏁 CODEFORCES · {escape(info["handle"])}</text>
 <text x="24" y="84" class="t" style="font-size:34px;font-weight:bold;fill:{rc}">{cur}</text>
 <text x="112" y="84" class="t" style="font-size:16px;fill:{rc}">{escape(rank.title())}</text>
 <text x="24" y="116" class="t" style="fill:#9ece6a">↗ +{gain} in {len(rating)} contests</text>
 <text x="24" y="142" class="t">max {mx} · {solved} solved · C++23</text>
-<text x="24" y="176" class="t" style="font-size:12px;fill:#e0af68">⏱ {next_line}</text>
 <line x1="440" y1="24" x2="440" y2="176" stroke="#292e42"/>
 <line x1="{x0}" y1="{y0 + 14}" x2="{x1}" y2="{y0 + 14}" stroke="#292e42"/>
 <polyline class="line" fill="none" stroke="#7aa2f7" stroke-width="2.5" points="{poly}"/>{dots}{labels}

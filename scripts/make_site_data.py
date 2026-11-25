@@ -34,14 +34,11 @@ for r in repos:
 info = (load("info.json", {}).get("result") or [{}])[0]
 rating = load("rating.json", {}).get("result", [])
 subs = load("status.json", {}).get("result", [])
-contests = [c for c in load("contests.json", {}).get("result", []) if c.get("phase") == "BEFORE"]
-contests.sort(key=lambda c: c["startTimeSeconds"])
 cf = {
     "handle": info.get("handle", "DAGMON"), "rating": info.get("rating"), "rank": info.get("rank"),
     "max": info.get("maxRating"), "contests": len(rating),
     "history": [r["newRating"] for r in rating],
     "solved": len({(s["problem"].get("contestId"), s["problem"]["index"]) for s in subs if s.get("verdict") == "OK"}),
-    "next": {"name": contests[0]["name"], "start": contests[0]["startTimeSeconds"]} if contests else None,
 }
 
 thm = json.loads(Path("data/thm.json").read_text())
