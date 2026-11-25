@@ -1,18 +1,6 @@
 {
- "generated": 1795636041,
+ "generated": 1795639244,
  "projects": [
-  {
-   "name": "profile-sync",
-   "desc": "Browser extension: your TryHackMe, LeetCode, Codeforces (and any site's) stats, synced to GitHub, webhooks and Discord.",
-   "url": "https://github.com/DAGMON-Z/profile-sync",
-   "homepage": "",
-   "stars": 0,
-   "langs": [
-    "JavaScript",
-    "HTML",
-    "CSS"
-   ]
-  },
   {
    "name": "neon-arch",
    "desc": "Neon Arch: a beginner-friendly Arch Linux + Hyprland setup with a Tokyo Night theme, one-command install, and a competitive programming workflow in Neovim.",
@@ -23,6 +11,18 @@
     "Shell",
     "Lua",
     "Python"
+   ]
+  },
+  {
+   "name": "profile-sync",
+   "desc": "Browser extension: your TryHackMe, LeetCode, Codeforces (and any site's) stats, synced to GitHub, webhooks and Discord.",
+   "url": "https://github.com/DAGMON-Z/profile-sync",
+   "homepage": "",
+   "stars": 0,
+   "langs": [
+    "JavaScript",
+    "HTML",
+    "CSS"
    ]
   },
   {
