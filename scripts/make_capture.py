@@ -79,10 +79,10 @@ for r in rows:
     deduped.append(r)
 rows = deduped
 
-# The 10 newest packets of TryHackMe progress and Codeforces solves, oldest first
+# The 10 newest packets of TryHackMe progress and Codeforces solves, newest first
 # (GitHub pushes are left out: the projects above already show that work)
 rows = [r for r in rows if r[2] == "tryhackme"]
-rows = sorted(sorted(cf_rows + rows, key=lambda r: r[0], reverse=True)[:10], key=lambda r: r[0])
+rows = sorted(cf_rows + rows, key=lambda r: r[0], reverse=True)[:10]
 
 
 def ago(t):
