@@ -47,7 +47,7 @@ top = f'''<text x="24" y="36" class="t h">🏁 CODEFORCES · {escape(info["handl
 <line x1="440" y1="24" x2="440" y2="152" stroke="#292e42"/>
 <line x1="{x0}" y1="{y0 + 14}" x2="{x1}" y2="{y0 + 14}" stroke="#292e42"/>
 <polyline class="line" fill="none" stroke="#7aa2f7" stroke-width="2.5" points="{poly}"/>{dots}{labels}
-<text x="{x1}" y="{y0 + 32}" text-anchor="end" class="t" style="font-size:11px;fill:#565f89">rating history</text>'''
+<text x="{x1}" y="{y0 + 9}" text-anchor="end" class="t" style="font-size:11px;fill:#565f89">rating history</text>'''
 
 # ======================= TryHackMe (bottom) =======================
 cfg = json.loads(Path("data/thm.json").read_text())
@@ -69,7 +69,7 @@ for step in LADDER:
     if step != "root":
         ladder += '<tspan fill="#565f89"> ─▶ </tspan>'
 
-TOP_H = 180                 # height of the Codeforces block
+TOP_H = 166                 # height of the Codeforces block
 BW, BH = 374, 87            # badge drawn at 1.5x (249x58 source)
 BY = TOP_H + 52
 # Stats from the Profile Sync extension (profile-sync/tryhackme-<user>.json),
