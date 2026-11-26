@@ -1,5 +1,5 @@
 {
- "generated": 1795733332,
+ "generated": 1795734364,
  "projects": [
   {
    "name": "profile-sync",
@@ -72,12 +72,12 @@
    "level": 3,
    "rank": "Top 40%",
    "topPercentage": 40,
-   "completedRoomsNumber": 12,
+   "completedRoomsNumber": 13,
    "badgesNumber": 2,
-   "totalPoints": 570,
+   "totalPoints": 578,
    "leagueTier": "silver",
    "streak": 4,
-   "synced": 1795733303
+   "synced": 1795734339
   },
   "url": "https://tryhackme.com/p/DAGMON",
   "badge": "https://raw.githubusercontent.com/DAGMON-Z/DAGMON-Z/main/assets/thm-badge.png"
