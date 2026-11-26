@@ -9,7 +9,39 @@
     "maxRating": 770,
     "rank": "Newbie",
     "rating": 770,
-    "solved": 7
+    "solved": 186
   },
-  "syncedAt": "2026-11-25T17:36:06.259Z"
+  "fields": [
+    {
+      "key": "rating",
+      "label": "Rating",
+      "kind": "number"
+    },
+    {
+      "key": "maxRating",
+      "label": "Max rating",
+      "kind": "number"
+    },
+    {
+      "key": "rank",
+      "label": "Rank",
+      "kind": "text"
+    },
+    {
+      "key": "maxRank",
+      "label": "Max rank",
+      "kind": "text"
+    },
+    {
+      "key": "solved",
+      "label": "Solved",
+      "kind": "number"
+    },
+    {
+      "key": "contribution",
+      "label": "Contribution",
+      "kind": "number"
+    }
+  ],
+  "syncedAt": "2026-11-26T13:27:54.510Z"
 }
