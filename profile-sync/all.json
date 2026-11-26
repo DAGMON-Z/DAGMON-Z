@@ -20,14 +20,14 @@
     "title": "DAGMON",
     "url": "https://tryhackme.com/p/DAGMON",
     "stats": {
-      "badges": 1,
+      "badges": 2,
       "league": "silver",
       "level": 3,
-      "points": 522,
+      "points": 570,
       "rank": "Top 40%",
-      "rooms": 11,
-      "streak": 2
+      "rooms": 12,
+      "streak": 4
     },
-    "syncedAt": "2026-11-25T21:11:35.948Z"
+    "syncedAt": "2026-11-26T22:48:23.120Z"
   }
 ]
