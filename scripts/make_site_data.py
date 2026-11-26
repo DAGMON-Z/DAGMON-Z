@@ -34,11 +34,23 @@ for r in repos:
 info = (load("info.json", {}).get("result") or [{}])[0]
 rating = load("rating.json", {}).get("result", [])
 subs = load("status.json", {}).get("result", [])
+def all_time_solved():
+    """All-time solved from the Profile Sync extension's file (the Codeforces
+    profile page's own count), or the accepted problems the API lists."""
+    n = len({(s["problem"].get("contestId"), s["problem"]["index"]) for s in subs if s.get("verdict") == "OK"})
+    try:
+        cfj = json.loads(Path(f"profile-sync/codeforces-{info.get('handle', '').lower()}.json").read_text())
+        v = cfj.get("stats", {}).get("solved")
+        return max(n, v) if isinstance(v, int) else n
+    except (OSError, ValueError):
+        return n
+
+
 cf = {
     "handle": info.get("handle", "DAGMON"), "rating": info.get("rating"), "rank": info.get("rank"),
     "max": info.get("maxRating"), "contests": len(rating),
     "history": [r["newRating"] for r in rating],
-    "solved": len({(s["problem"].get("contestId"), s["problem"]["index"]) for s in subs if s.get("verdict") == "OK"}),
+    "solved": all_time_solved(),
 }
 
 thm = json.loads(Path("data/thm.json").read_text())
