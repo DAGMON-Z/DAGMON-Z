@@ -17,11 +17,11 @@
 
 ### 🏁 Competitive programming · 🛡️ Pentesting
 
-<p align="center"><img src="assets/v/stats-18b9e7d520.svg" width="100%" alt="Codeforces rating, rating history and all-time solved problems, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
+<p align="center"><img src="assets/v/stats-88c6f85592.svg" width="100%" alt="Codeforces rating, rating history and all-time solved problems, and the live TryHackMe badge with a privilege ladder toward Red Teamer"></p>
 
 ### 📡 Live capture of my activity
 
-<p align="center"><img src="assets/v/capture-a64c73fd0c.svg" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
+<p align="center"><img src="assets/v/capture-5f882c484a.svg" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
 
 ### 🚩 Profile CTF: port 31337 was filtered for a reason
 
