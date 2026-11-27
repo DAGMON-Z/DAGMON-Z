@@ -21,7 +21,7 @@
 
 ### 📡 Live capture of my activity
 
-<p align="center"><img src="assets/v/capture-b506b00ce7.svg" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
+<p align="center"><img src="assets/v/capture-92d8076942.svg" width="100%" alt="recent GitHub and Codeforces activity as packets"></p>
 
 ### 🚩 Profile CTF: port 31337 was filtered for a reason
 
