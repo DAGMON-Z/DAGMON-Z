@@ -1,6 +1,18 @@
 {
- "generated": 1795826766,
+ "generated": 1795837085,
  "projects": [
+  {
+   "name": "airlock",
+   "desc": "Ask AI about private documents without telling it who you are. Hybrid on-device + cloud AI with Firebase AI Logic.",
+   "url": "https://github.com/DAGMON-Z/airlock",
+   "homepage": "https://airlock-35fc7.web.app",
+   "stars": 0,
+   "langs": [
+    "TypeScript",
+    "CSS",
+    "HTML"
+   ]
+  },
   {
    "name": "profile-sync",
    "desc": "Browser extension: your TryHackMe, LeetCode, Codeforces (and any site's) stats, synced to GitHub, webhooks and Discord.",
@@ -23,18 +35,6 @@
     "Shell",
     "Lua",
     "Python"
-   ]
-  },
-  {
-   "name": "airlock",
-   "desc": "Ask AI about private documents without telling it who you are. Hybrid on-device + cloud AI with Firebase AI Logic.",
-   "url": "https://github.com/DAGMON-Z/airlock",
-   "homepage": "https://airlock-35fc7.web.app",
-   "stars": 0,
-   "langs": [
-    "TypeScript",
-    "CSS",
-    "HTML"
    ]
   },
   {
