@@ -6,11 +6,11 @@
   "stats": {
     "badges": 2,
     "league": "silver",
-    "level": 3,
-    "points": 962,
-    "rank": "Top 35%",
+    "level": 4,
+    "points": 1010,
+    "rank": "Top 30%",
     "rooms": 19,
-    "streak": 4
+    "streak": 5
   },
   "fields": [
     {
@@ -49,5 +49,5 @@
       "kind": "text"
     }
   ],
-  "syncedAt": "2026-11-28T00:15:07.268Z"
+  "syncedAt": "2026-11-28T00:45:38.032Z"
 }
