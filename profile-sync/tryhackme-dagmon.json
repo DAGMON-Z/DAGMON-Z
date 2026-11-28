@@ -7,9 +7,9 @@
     "badges": 2,
     "league": "silver",
     "level": 4,
-    "points": 1170,
-    "rank": "Top 30%",
-    "rooms": 20,
+    "points": 1290,
+    "rank": "Top 25%",
+    "rooms": 21,
     "streak": 5
   },
   "fields": [
@@ -49,5 +49,5 @@
       "kind": "text"
     }
   ],
-  "syncedAt": "2026-11-28T16:57:25.811Z"
+  "syncedAt": "2026-11-28T18:09:12.615Z"
 }
