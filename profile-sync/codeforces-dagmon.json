@@ -8,8 +8,7 @@
     "maxRank": "Newbie",
     "maxRating": 813,
     "rank": "Newbie",
-    "rating": 813,
-    "solved": 186
+    "rating": 813
   },
   "fields": [
     {
@@ -43,5 +42,5 @@
       "kind": "number"
     }
   ],
-  "syncedAt": "2026-11-28T14:18:12.222Z"
+  "syncedAt": "2026-11-28T16:57:14.108Z"
 }

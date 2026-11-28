@@ -9,10 +9,9 @@
       "maxRank": "Newbie",
       "maxRating": 813,
       "rank": "Newbie",
-      "rating": 813,
-      "solved": 186
+      "rating": 813
     },
-    "syncedAt": "2026-11-28T14:18:12.222Z"
+    "syncedAt": "2026-11-28T16:57:14.108Z"
   },
   {
     "id": "tryhackme-dagmon",
@@ -23,11 +22,11 @@
       "badges": 2,
       "league": "silver",
       "level": 4,
-      "points": 1010,
+      "points": 1170,
       "rank": "Top 30%",
-      "rooms": 19,
+      "rooms": 20,
       "streak": 5
     },
-    "syncedAt": "2026-11-28T00:45:38.032Z"
+    "syncedAt": "2026-11-28T16:57:25.811Z"
   }
 ]
