@@ -1,0 +1,29 @@
+{
+  "app": "profile-sync",
+  "version": 1,
+  "updatedAt": 1795885002616,
+  "checkEvery": 5,
+  "autoAccounts": true,
+  "github": {
+    "branch": "",
+    "folder": "profile-sync",
+    "json": true,
+    "card": true,
+    "theme": "dark",
+    "history": false
+  },
+  "trackers": [
+    {
+      "kind": "builtin",
+      "platform": "codeforces",
+      "username": "DAGMON",
+      "auto": true
+    },
+    {
+      "kind": "builtin",
+      "platform": "tryhackme",
+      "username": "DAGMON",
+      "auto": true
+    }
+  ]
+}
