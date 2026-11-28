@@ -1,5 +1,5 @@
 {
- "generated": 1795824939,
+ "generated": 1795826766,
  "projects": [
   {
    "name": "profile-sync",
@@ -69,15 +69,15 @@
   "privilege": "guest",
   "stats": {
    "username": "DAGMON",
-   "level": 3,
-   "rank": "Top 35%",
-   "topPercentage": 35,
+   "level": 4,
+   "rank": "Top 30%",
+   "topPercentage": 30,
    "completedRoomsNumber": 19,
    "badgesNumber": 2,
-   "totalPoints": 962,
+   "totalPoints": 1010,
    "leagueTier": "silver",
-   "streak": 4,
-   "synced": 1795824907
+   "streak": 5,
+   "synced": 1795826738
   },
   "url": "https://tryhackme.com/p/DAGMON",
   "badge": "https://raw.githubusercontent.com/DAGMON-Z/DAGMON-Z/main/assets/thm-badge.png"
