@@ -1,7 +1,7 @@
 {
   "app": "profile-sync",
   "version": 1,
-  "updatedAt": 1795885002616,
+  "updatedAt": 1795885401380,
   "checkEvery": 5,
   "autoAccounts": true,
   "github": {
@@ -17,13 +17,25 @@
       "kind": "builtin",
       "platform": "codeforces",
       "username": "DAGMON",
-      "auto": true
+      "auto": true,
+      "hide": [
+        "maxRating",
+        "maxRank",
+        "contribution"
+      ]
     },
     {
       "kind": "builtin",
       "platform": "tryhackme",
       "username": "DAGMON",
-      "auto": true
+      "auto": true,
+      "hide": [
+        "level",
+        "points",
+        "badges",
+        "streak",
+        "league"
+      ]
     }
   ]
 }
