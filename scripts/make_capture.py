@@ -114,6 +114,24 @@ def show(v):
     return f"{v:,}" if isinstance(v, (int, float)) and not isinstance(v, bool) else str(v)
 
 
+# Codeforces group (and private gym) problems aren't in the public API, so they
+# can't be listed by name. The extension's all-time count ("N problems solved
+# for all time", read from the profile page) does include them: when it rises
+# by more than the API shows for the same time, the difference were group
+# problems. Counted from the version that started reading that count.
+GROUP_SINCE = datetime(2026, 11, 26, 13, 0, tzinfo=timezone.utc)
+solve_times = sorted(t for t, _ in solved.values())
+
+
+def group_rows(when, before, after, since):
+    n = after - before
+    seen = sum(1 for t in solve_times if since < t <= when)  # solves the API knows about
+    extra = n - seen
+    if extra > 0 and since >= GROUP_SINCE:
+        cf_rows.append((when, ME, "codeforces", "SOLVED", "#9ece6a",
+                        f"{extra} group problem{'s' if extra > 1 else ''} · group"))
+
+
 progress = []
 for path in sorted(Path("profile-sync").glob("*.json")):
     if path.name == "all.json":
@@ -128,10 +146,18 @@ for path in sorted(Path("profile-sync").glob("*.json")):
         except ValueError:
             continue
     prev = {}
+    last_solved = None  # (time, count): the last version that had the count
     for i, (when, doc) in enumerate(versions):
         when += timedelta(microseconds=i)  # same-second saves keep their order
         stats, fields = doc.get("stats") or {}, doc.get("fields")
         site = str(doc.get("site", path.stem.split("-")[0]))
+        # (a repeated count may be the old value carried over, so the window
+        # starts where the count last changed)
+        if site.lower() == "codeforces" and isinstance(stats.get("solved"), int):
+            if not last_solved or stats["solved"] != last_solved[1]:
+                if last_solved:
+                    group_rows(when, last_solved[1], stats["solved"], last_solved[0])
+                last_solved = (when, stats["solved"])
         hide = HIDE | HIDE_PER_SITE.get(site.lower(), set())
         order = ordered(stats, fields)
         changed = [k for k in order if k in stats and k not in hide and stats[k] != prev.get(k)]
