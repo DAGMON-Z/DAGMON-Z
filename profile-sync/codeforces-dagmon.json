@@ -6,9 +6,9 @@
   "stats": {
     "contribution": 0,
     "maxRank": "Newbie",
-    "maxRating": 770,
+    "maxRating": 813,
     "rank": "Newbie",
-    "rating": 770,
+    "rating": 813,
     "solved": 186
   },
   "fields": [
@@ -43,5 +43,5 @@
       "kind": "number"
     }
   ],
-  "syncedAt": "2026-11-26T13:27:54.510Z"
+  "syncedAt": "2026-11-28T14:18:12.222Z"
 }
